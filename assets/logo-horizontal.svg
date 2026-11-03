@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600" width="1800" height="600">
+<defs><linearGradient id="badge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#173250"/><stop offset="1" stop-color="#0F1B32"/></linearGradient></defs>
+<circle cx="300" cy="300" r="260" fill="url(#badge)" stroke="#12C1AA" stroke-width="10"/>
+<path d="M160 190h275l90 90v185H160z" fill="#12C1AA"/><circle cx="205" cy="235" r="23" fill="#0F1B32"/>
+<path d="M245 395l88-85 65 34 92-112" fill="none" stroke="#FFC74F" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/><path d="M465 215l68 1-17 67z" fill="#FFC74F"/>
+<text x="625" y="155" font-family="Segoe UI,Arial,sans-serif" font-size="74" font-weight="700" letter-spacing="8" fill="#12C1AA">GRUPO</text>
+<text x="620" y="385" font-family="Arial,sans-serif" font-size="218" font-weight="900" fill="#112139">TOP</text>
+<text x="1065" y="370" font-family="Segoe UI,Arial,sans-serif" font-size="125" font-weight="800" fill="#112139">OFERTAS</text></svg>

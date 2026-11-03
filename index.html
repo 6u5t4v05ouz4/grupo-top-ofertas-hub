@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grupo Top Ofertas — Hub de links</title>
+  <meta name="description" content="Hub de links do Grupo Top Ofertas: ofertas do Mercado Livre com avisos de afiliado." />
+  <link rel="icon" href="assets/logo-horizontal.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="hero" role="banner">
+    <img class="hero__logo" src="assets/logo-horizontal.svg" alt="Grupo Top Ofertas" width="240" height="80" />
+    <h1 class="hero__title">Grupo Top Ofertas</h1>
+    <p class="hero__promise">Achados selecionados do Mercado Livre, com preço e disponibilidade sujeitos a alteração.</p>
+  </header>
+
+  <main id="conteudo" class="main">
+    <section class="notice" aria-labelledby="aviso-titulo">
+      <h2 id="aviso-titulo" class="notice__title">Aviso de links de afiliado</h2>
+      <p>Os links abaixo são de afiliado. Ao comprar por eles, o Grupo Top Ofertas pode receber comissão, sem custo adicional para você. Os preços e disponibilidade podem mudar a qualquer momento; confira sempre no Mercado Livre.</p>
+    </section>
+
+    <section class="offers" aria-labelledby="ofertas-titulo">
+      <h2 id="ofertas-titulo" class="offers__title">Ofertas em destaque</h2>
+      <p class="offers__hint">Ofertas editáveis em <code>offers.json</code>. Não inventamos preço/desconto; apenas o link demonstrativo é exibido abaixo.</p>
+      <div id="offers-list" class="offers__list" aria-live="polite"></div>
+      <p id="offers-empty" class="offers__empty" hidden>Nenhuma oferta disponível no momento.</p>
+    </section>
+
+    <section class="channels" aria-labelledby="canais-titulo">
+      <h2 id="canais-titulo" class="channels__title">Canais oficiais</h2>
+      <ul class="channels__list">
+        <li><a href="https://www.instagram.com/grupotopofertas.br" target="_blank" rel="noopener noreferrer">Instagram @grupotopofertas.br</a></li>
+        <li><a href="https://www.tiktok.com/@grupotopofertas" target="_blank" rel="noopener noreferrer">TikTok @grupotopofertas</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61595931852990" target="_blank" rel="noopener noreferrer">Facebook Grupo Top Ofertas</a></li>
+        <li><a href="https://www.youtube.com/@GrupoTopOfertas" target="_blank" rel="noopener noreferrer">YouTube @GrupoTopOfertas</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© Grupo Top Ofertas. Conteúdo sujeito a revisão. Links de afiliado.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
