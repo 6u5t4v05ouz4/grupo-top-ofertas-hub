@@ -153,11 +153,20 @@ def main() -> None:
         pontos = bruto.count('class="ponto"')
         if "/oferta/" in html.as_posix() and pontos != leituras:
             falhas.append(f"{html.relative_to(PUB)}: {pontos} ponto(s) na linha do tempo para {leituras} leitura(s)")
-        texto = " ".join(pagina_de(html).texto)
-        if leituras == 1 and "Primeira conferência" not in texto:
+        # o selo é o do painel desta ficha; a lista de outras ofertas no rodapé
+        # pode legitimamente mostrar "Preço igual" de outra oferta
+        m_painel = re.search(r'<aside class="painel".*?</aside>', bruto, re.S)
+        selo = Pagina()
+        if m_painel:
+            selo.feed(m_painel.group(0))
+        else:
+            selo.feed(bruto)
+        texto_selo = " ".join(selo.texto)
+        if leituras == 1 and "Primeira conferência" not in texto_selo:
             falhas.append(f"{html.relative_to(PUB)}: selo visível deveria dizer 'Primeira conferência'")
-        if leituras == 1 and "Preço igual" in texto:
+        if leituras == 1 and "Preço igual" in texto_selo:
             falhas.append(f"{html.relative_to(PUB)}: 'Preço igual' com uma única leitura")
+        texto = " ".join(pagina_de(html).texto)
         if "leitura(s)" in texto or "registrada(s)" in texto:
             falhas.append(f"{html.relative_to(PUB)}: plural abreviado com (s)")
     ok.append("selo x leituras: consistente nas 6 fichas")

@@ -30,7 +30,8 @@
         "desconto_pct": 45,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T13:20:00-03:00"
+        "price_checked_at": "2026-11-08T18:33:24-03:00",
+        "conferido_em": "2026-11-08T18:33:24-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -61,9 +62,13 @@
           "cartao": 593.94,
           "pix": 571.04,
           "status": "inicial"
+        },
+        {
+          "em": "2026-11-08T18:33:24-03:00",
+          "cartao": 593.94
         }
       ],
-      "conferido_por": "Publisher"
+      "conferido_por": "ML Scout"
     },
     {
       "slug": "colchao-dellamed-air-plus",
@@ -80,8 +85,18 @@
       "veredito": "Colchão antiescaras Dellamed Air Plus, recomendado no vídeo de 06/11. O preço ainda não foi reconferido e por isso não aparece aqui.",
       "capa": "assets/capas/colchao-dellamed-air-plus.jpg",
       "capa_alt": "Capa do vídeo do colchão antiescaras Dellamed Air Plus",
-      "preco": null,
-      "disponibilidade": "Unknown",
+      "preco": {
+        "cartao": 199.99,
+        "pix": null,
+        "parcelas": null,
+        "de": 399.0,
+        "desconto_pct": 49,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-08T18:33:24-03:00",
+        "conferido_em": "2026-11-08T18:33:24-03:00"
+      },
+      "disponibilidade": "InStock",
       "postado_em": "2026-11-06T15:20:00-03:00",
       "atualizado_em": "2026-11-06T15:20:00-03:00",
       "videos": {
@@ -91,8 +106,13 @@
       },
       "link_afiliado": "https://meli.la/2znR9ZJ",
       "ficha": [],
-      "historico_preco": [],
-      "conferido_por": null
+      "historico_preco": [
+        {
+          "em": "2026-11-08T18:33:24-03:00",
+          "cartao": 199.99
+        }
+      ],
+      "conferido_por": "ML Scout"
     },
     {
       "slug": "carrinho-atentu-4x4",
@@ -109,8 +129,18 @@
       "veredito": "Carrinho de controle remoto 4x4 off-road ATENTU, recomendado no vídeo de 06/11. Preço não reconferido desde a postagem.",
       "capa": "assets/capas/carrinho-atentu-4x4.jpg",
       "capa_alt": "Capa do vídeo do carrinho de controle remoto 4x4 ATENTU",
-      "preco": null,
-      "disponibilidade": "Unknown",
+      "preco": {
+        "cartao": 74.9,
+        "pix": null,
+        "parcelas": null,
+        "de": 199.9,
+        "desconto_pct": 62,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-08T18:33:24-03:00",
+        "conferido_em": "2026-11-08T18:33:24-03:00"
+      },
+      "disponibilidade": "InStock",
       "postado_em": "2026-11-06T18:19:00-03:00",
       "atualizado_em": "2026-11-06T18:19:00-03:00",
       "videos": {
@@ -121,8 +151,13 @@
       },
       "link_afiliado": "https://meli.la/2qDuZyj",
       "ficha": [],
-      "historico_preco": [],
-      "conferido_por": null,
+      "historico_preco": [
+        {
+          "em": "2026-11-08T18:33:24-03:00",
+          "cartao": 74.9
+        }
+      ],
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true
     },
     {
@@ -140,8 +175,18 @@
       "veredito": "Tênis de corrida unissex Kappa Pulse Supra, recomendado no vídeo de 05/11. Preço não reconferido desde a postagem.",
       "capa": "assets/capas/tenis-kappa-pulse-supra.jpg",
       "capa_alt": "Capa do vídeo do tênis Kappa Pulse Supra",
-      "preco": null,
-      "disponibilidade": "Unknown",
+      "preco": {
+        "cartao": 134.67,
+        "pix": null,
+        "parcelas": null,
+        "de": 259.99,
+        "desconto_pct": 48,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-08T18:33:24-03:00",
+        "conferido_em": "2026-11-08T18:33:24-03:00"
+      },
+      "disponibilidade": "InStock",
       "postado_em": "2026-11-05T16:05:00-03:00",
       "atualizado_em": "2026-11-05T16:05:00-03:00",
       "videos": {
@@ -151,8 +196,13 @@
       },
       "link_afiliado": "https://meli.la/2UJH5vu",
       "ficha": [],
-      "historico_preco": [],
-      "conferido_por": null,
+      "historico_preco": [
+        {
+          "em": "2026-11-08T18:33:24-03:00",
+          "cartao": 134.67
+        }
+      ],
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true
     },
     {
@@ -170,8 +220,18 @@
       "veredito": "Maquininha Dragão Crowley, recomendada no vídeo de 04/11. Preço não reconferido desde a postagem.",
       "capa": "assets/capas/maquininha-dragao-crowley.jpg",
       "capa_alt": "Capa do vídeo da maquininha Dragão Crowley",
-      "preco": null,
-      "disponibilidade": "Unknown",
+      "preco": {
+        "cartao": 22.9,
+        "pix": 20.61,
+        "parcelas": null,
+        "de": 34.9,
+        "desconto_pct": 34,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-08T18:33:24-03:00",
+        "conferido_em": "2026-11-08T18:33:24-03:00"
+      },
+      "disponibilidade": "InStock",
       "postado_em": "2026-11-04T11:46:00-03:00",
       "atualizado_em": "2026-11-04T11:46:00-03:00",
       "videos": {
@@ -181,8 +241,13 @@
       },
       "link_afiliado": "https://meli.la/1dK1hxv",
       "ficha": [],
-      "historico_preco": [],
-      "conferido_por": null
+      "historico_preco": [
+        {
+          "em": "2026-11-08T18:33:24-03:00",
+          "cartao": 22.9
+        }
+      ],
+      "conferido_por": "ML Scout"
     },
     {
       "slug": "kit-refletor-led-verunto-400w",
