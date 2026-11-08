@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote
@@ -169,6 +170,21 @@ def main() -> None:
         texto = " ".join(pagina_de(html).texto)
         if "leitura(s)" in texto or "registrada(s)" in texto:
             falhas.append(f"{html.relative_to(PUB)}: plural abreviado com (s)")
+        # o cabeçalho não pode anunciar uma conferência anterior à leitura da ficha
+        m_cab = re.search(r'Última conferência <strong>(\d{2})/(\d{2}), (\d{2}:\d{2})</strong>', bruto)
+        m_lido = re.search(r'Lido no anúncio em <strong>(\d{2})/(\d{2})/(\d{4}) às (\d{2}:\d{2})</strong>', bruto)
+        if m_cab and m_lido:
+            cab = datetime.strptime(f"{m_lido.group(3)}-{m_cab.group(2)}-{m_cab.group(1)} {m_cab.group(3)}", "%Y-%m-%d %H:%M")
+            lido = datetime.strptime(f"{m_lido.group(3)}-{m_lido.group(2)}-{m_lido.group(1)} {m_lido.group(4)}", "%Y-%m-%d %H:%M")
+            if lido > cab:
+                falhas.append(
+                    f"{html.relative_to(PUB)}: cabeçalho diz última conferência "
+                    f"{m_cab.group(1)}/{m_cab.group(2)} {m_cab.group(3)}, mas a leitura é de "
+                    f"{m_lido.group(1)}/{m_lido.group(2)} {m_lido.group(4)}"
+                )
+        # ficha com preço conferido não pode dizer que o preço não foi conferido
+        if estado != "sem_conferencia" and re.search(r"não (re)?conferid|ainda não foi (re)?conferid", texto):
+            falhas.append(f"{html.relative_to(PUB)}: tem preço conferido mas o texto diz que não foi conferido")
     ok.append("selo x leituras: consistente nas 6 fichas")
 
     # sitemap

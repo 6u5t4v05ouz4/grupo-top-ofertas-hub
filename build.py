@@ -72,6 +72,25 @@ def quando(iso: str) -> datetime:
     return datetime.fromisoformat(iso)
 
 
+def referencia_efetiva(dados: dict) -> str:
+    """Referência exibida nunca fica atrás da leitura de preço mais recente.
+
+    Se o ML Scout registra uma leitura depois da referência do arquivo, o site
+    não pode anunciar uma "última conferência" anterior ao que já mostra.
+    """
+    referencia = quando(dados["referencia"])
+    carimbo = dados["referencia"]
+    for o in dados.get("ofertas", []):
+        lido_iso = (o.get("preco") or {}).get("price_checked_at")
+        if not lido_iso:
+            continue
+        lido = quando(lido_iso)
+        if lido > referencia:
+            referencia = lido
+            carimbo = lido_iso
+    return carimbo
+
+
 def data(iso: str) -> str:
     return quando(iso).strftime("%d/%m/%Y")
 
@@ -202,7 +221,7 @@ def calcular_estado(oferta: dict) -> dict:
 
 
 def preparar(dados: dict) -> list[dict]:
-    referencia = quando(dados["referencia"])
+    referencia = quando(referencia_efetiva(dados))
     ofertas = []
     for o in dados["ofertas"]:
         if not o.get("publish", True):
@@ -1083,7 +1102,7 @@ def gerar_sitemap(ofertas: list[dict], referencia: str) -> str:
 
 def main() -> None:
     dados = carregar()
-    referencia = dados["referencia"]
+    referencia = referencia_efetiva(dados)
     ofertas = preparar(dados)
 
     if "--check" in sys.argv:
