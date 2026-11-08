@@ -1112,7 +1112,11 @@ def main() -> None:
     escrever("sitemap.xml", gerar_sitemap(ofertas, referencia))
     escrever("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     escrever("_headers", "/assets/*\n  Cache-Control: public, max-age=604800\n")
-    escrever("_redirects", "/index.html / 301\n")
+    escrever("_redirects",
+             "/index.html / 301\n"
+             "/offers.json / 301\n"
+             "/app.js / 301\n"
+             "/styles.css / 301\n")
     escrever(".nojekyll", "")
 
     paginas = len(list(SAIDA.rglob("*.html")))
