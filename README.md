@@ -1,39 +1,36 @@
-# Grupo Top Ofertas — Hub de links (rascunho)
+# Grupo Top Ofertas — portal
 
-Site estático, portável, mobile-first. Pronto para Cloudflare Pages (ou qualquer host estático). Sem build step.
+Site estático do Grupo Top Ofertas, em Cloudflare Pages.
 
-## Arquivos
-- `index.html` — estrutura e acessibilidade.
-- `styles.css` — estilos (paleta V1: navy/teal/amarelo/off-white).
-- `app.js` — renderiza ofertas a partir de `offers.json`.
-- `offers.json` — ofertas editáveis (sem preço/desconto inventado).
-- `assets/` — logo e avatar (identidade V1).
+- Home (vitrine), arquivo, ficha por oferta, método, aviso de afiliado e canais.
+- Gerado por `build.py` (Python 3.13, só biblioteca padrão) a partir de `dados/ofertas.json`.
+- Saída em `public/`. **Nenhum HTML é editado à mão.**
 
-## Editar ofertas
-Edite `offers.json`. Campos: `title`, `description`, `tag`, `note`, `cta`, `url`. Não invente preço/desconto; confirme no Mercado Livre. Use apenas links autorizados.
+## Comandos
 
-## Validação local
 ```bash
-python -m http.server 8080
-# abrir http://localhost:8080
+python build.py           # valida dados e gera public/
+python build.py --check   # só valida
+python ferramentas/check.py   # não versionado; ver docs/LEIA-ME.md
 ```
-JSON: `python -m json.tool offers.json`
 
-## Acessibilidade
-- Skip link, headings semânticos, foco visível, alvos ≥44px, contraste navy/teal.
+## Regras de dados
+
+- Preço só existe com `price_checked_at`.
+- `status` e `delta` são calculados no build, nunca escritos no JSON.
+- Parcelamento só entra quando é sem juros.
+- Capa que mostra preço só é publicada quando há preço conferido.
+- Oferta antiga não sai do ar: vira `indisponivel` ou `sem_conferencia`.
 
 ## Deploy
-Apenas após aprovação explícita do Gustavo. Este rascunho não foi publicado nem alterou DNS/bio.
 
-## Deploy
-Repositório privado `grupo-top-ofertas-hub` conectado ao Cloudflare Pages (branch principal, auto-deploy). Domínio pages.dev do Cloudflare. Sem DNS customizado.
+Cloudflare Pages, projeto `grupo-top-ofertas-hub`, branch `main`.
+Build: `python build.py` · saída: `public` · Python 3.13 via `.python-version`.
+Preview em qualquer branch; produção no merge para `main`.
 
-## Manutenção de ofertas
-- Editar `offers.json` (title, description, tag, note, cta, url).
-- Auto-deploy autorizado apenas para dados de ofertas com link de afiliado validado.
-- Mudanças de layout/marca, analytics/tracking, privacidade/segurança ou domínio exigem revisão do Gustavo.
-- Não publicar posts em redes sociais (aprovação por post separada).
-- Outros agents devem encaminhar ofertas verificadas para o Dev Fullstack.
+Detalhes: `docs/DEPLOY.md` e `docs/CHECKLIST-DOMINIO.md`.
 
-## Status
-Publicado em Cloudflare Pages (pages.dev). Conteúdo sujeito a revisão.
+## Legado
+
+Os arquivos do hub antigo (`index.html`, `offers.json`, `app.js`, `styles.css`) continuam na raiz até a
+limpeza pós-virada. Eles não são publicados: o Pages publica somente `public/`.

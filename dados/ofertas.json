@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "referencia": "2026-11-08T13:20:00-03:00",
+  "atualizado_em": "2026-11-08T13:40:00-03:00",
+  "ofertas": [
+    {
+      "slug": "kit-3-em-1-the-black-tools",
+      "publish": true,
+      "item_id": "MLB4702102583",
+      "catalog_id": "MLB70068942",
+      "titulo": "Kit Multi Ferramentas 3 em 1 The Black Tools TBKIT04",
+      "titulo_curto": "Kit 3 em 1 The Black Tools",
+      "categoria": {
+        "slug": "ferramentas",
+        "rotulo": "Ferramentas"
+      },
+      "marca": "The Black Tools",
+      "veredito": "Chave de impacto de 430 N·m, esmerilhadeira de 9.000 rpm e parafusadeira de 35 N·m, com duas baterias 21V, carregador e maleta. As três máquinas são brushless.",
+      "capa": "assets/capas/kit-3-em-1-the-black-tools.jpg",
+      "capa_alt": "Capa do vídeo do kit 3 em 1 The Black Tools, com a maleta aberta e o preço de R$ 593,94",
+      "preco": {
+        "cartao": 593.94,
+        "pix": 571.04,
+        "parcelas": {
+          "quantidade": 10,
+          "valor": 59.39,
+          "sem_juros": true
+        },
+        "de": 1079.9,
+        "desconto_pct": 45,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-08T13:20:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-08T13:12:00-03:00",
+      "atualizado_em": "2026-11-08T13:20:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/AoyWuWz9QAg",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DffJlTJIGoh/",
+        "facebook": "https://www.facebook.com/reel/1666909428510500",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7705834107141410049"
+      },
+      "duracao_video_s": 24,
+      "link_afiliado": "https://meli.la/1qWsurP",
+      "ficha": [
+        "Chave de impacto 430 N·m, encaixe 1/2\"",
+        "Esmerilhadeira 9.000 rpm, discos 115/125 mm",
+        "Parafusadeira 35 N·m, mandril 3/8\"",
+        "2 baterias 21V, carregador e maleta",
+        "Motor brushless nas três máquinas"
+      ],
+      "vendedor": "Loja oficial The Black Tools",
+      "avaliacao": {
+        "nota": 4.8,
+        "opinioes": 38
+      },
+      "historico_preco": [
+        {
+          "em": "2026-11-08T13:20:00-03:00",
+          "cartao": 593.94,
+          "pix": 571.04,
+          "status": "inicial"
+        }
+      ],
+      "conferido_por": "Publisher"
+    },
+    {
+      "slug": "colchao-dellamed-air-plus",
+      "publish": true,
+      "item_id": "MLB4212913071",
+      "catalog_id": null,
+      "titulo": "Colchão Antiescaras Dellamed Air Plus",
+      "titulo_curto": "Colchão Dellamed Air Plus",
+      "categoria": {
+        "slug": "saude",
+        "rotulo": "Saúde e bem-estar"
+      },
+      "marca": "Dellamed",
+      "veredito": "Colchão antiescaras Dellamed Air Plus, recomendado no vídeo de 06/11. O preço ainda não foi reconferido e por isso não aparece aqui.",
+      "capa": "assets/capas/colchao-dellamed-air-plus.jpg",
+      "capa_alt": "Capa do vídeo do colchão antiescaras Dellamed Air Plus",
+      "preco": null,
+      "disponibilidade": "Unknown",
+      "postado_em": "2026-11-06T15:20:00-03:00",
+      "atualizado_em": "2026-11-06T15:20:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/NbP0yBqVVa4",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfaOfMPI1q8/",
+        "facebook": "https://www.facebook.com/reel/30131132146476109"
+      },
+      "link_afiliado": "https://meli.la/2znR9ZJ",
+      "ficha": [],
+      "historico_preco": [],
+      "conferido_por": null
+    },
+    {
+      "slug": "carrinho-atentu-4x4",
+      "publish": true,
+      "item_id": "MLB77708054",
+      "catalog_id": null,
+      "titulo": "Carrinho de Controle Remoto 4x4 Off-road ATENTU",
+      "titulo_curto": "Carrinho 4x4 ATENTU",
+      "categoria": {
+        "slug": "brinquedos",
+        "rotulo": "Brinquedos"
+      },
+      "marca": "ATENTU",
+      "veredito": "Carrinho de controle remoto 4x4 off-road ATENTU, recomendado no vídeo de 06/11. Preço não reconferido desde a postagem.",
+      "capa": "assets/capas/carrinho-atentu-4x4.jpg",
+      "capa_alt": "Capa do vídeo do carrinho de controle remoto 4x4 ATENTU",
+      "preco": null,
+      "disponibilidade": "Unknown",
+      "postado_em": "2026-11-06T18:19:00-03:00",
+      "atualizado_em": "2026-11-06T18:19:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/TZHJSxHBdHg",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfajOIToyJR/",
+        "facebook": "https://www.facebook.com/reel/3101874260152891",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7705170952920845589"
+      },
+      "link_afiliado": "https://meli.la/2qDuZyj",
+      "ficha": [],
+      "historico_preco": [],
+      "conferido_por": null,
+      "capa_tem_preco": true
+    },
+    {
+      "slug": "tenis-kappa-pulse-supra",
+      "publish": true,
+      "item_id": "MLB5857442960",
+      "catalog_id": null,
+      "titulo": "Tênis Kappa Pulse Supra Unissex de Corrida Conforto",
+      "titulo_curto": "Tênis Kappa Pulse Supra",
+      "categoria": {
+        "slug": "calcados",
+        "rotulo": "Calçados"
+      },
+      "marca": "Kappa",
+      "veredito": "Tênis de corrida unissex Kappa Pulse Supra, recomendado no vídeo de 05/11. Preço não reconferido desde a postagem.",
+      "capa": "assets/capas/tenis-kappa-pulse-supra.jpg",
+      "capa_alt": "Capa do vídeo do tênis Kappa Pulse Supra",
+      "preco": null,
+      "disponibilidade": "Unknown",
+      "postado_em": "2026-11-05T16:05:00-03:00",
+      "atualizado_em": "2026-11-05T16:05:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/pOuY3zQ1lZ4",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfXZ446of3B/",
+        "facebook": "https://www.facebook.com/reel/1436263224694326"
+      },
+      "link_afiliado": "https://meli.la/2UJH5vu",
+      "ficha": [],
+      "historico_preco": [],
+      "conferido_por": null,
+      "capa_tem_preco": true
+    },
+    {
+      "slug": "maquininha-dragao-crowley",
+      "publish": true,
+      "item_id": "MLB78872569",
+      "catalog_id": null,
+      "titulo": "Maquininha Dragão Crowley",
+      "titulo_curto": "Maquininha Crowley",
+      "categoria": {
+        "slug": "eletronicos",
+        "rotulo": "Eletrônicos"
+      },
+      "marca": "Crowley",
+      "veredito": "Maquininha Dragão Crowley, recomendada no vídeo de 04/11. Preço não reconferido desde a postagem.",
+      "capa": "assets/capas/maquininha-dragao-crowley.jpg",
+      "capa_alt": "Capa do vídeo da maquininha Dragão Crowley",
+      "preco": null,
+      "disponibilidade": "Unknown",
+      "postado_em": "2026-11-04T11:46:00-03:00",
+      "atualizado_em": "2026-11-04T11:46:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/y0bcFvQQok0",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfUYDWuoH4m/",
+        "facebook": "https://www.facebook.com/reel/1810392550299862"
+      },
+      "link_afiliado": "https://meli.la/1dK1hxv",
+      "ficha": [],
+      "historico_preco": [],
+      "conferido_por": null
+    },
+    {
+      "slug": "kit-refletor-led-verunto-400w",
+      "publish": true,
+      "item_id": "MLB6797156948",
+      "catalog_id": null,
+      "titulo": "Kit 2 Refletor Super LED 400W VERUNTO",
+      "titulo_curto": "Kit 2 Refletores 400W",
+      "categoria": {
+        "slug": "iluminacao",
+        "rotulo": "Iluminação"
+      },
+      "marca": "VERUNTO",
+      "veredito": "Kit com dois refletores Super LED de 400W, recomendado no vídeo de 02/11. Preço não reconferido desde a postagem.",
+      "capa": "assets/capas/kit-refletor-led-verunto-400w.jpg",
+      "capa_alt": "Capa do vídeo do kit de dois refletores Super LED 400W",
+      "preco": null,
+      "disponibilidade": "Unknown",
+      "postado_em": "2026-11-02T12:00:00-03:00",
+      "atualizado_em": "2026-11-02T12:00:00-03:00",
+      "videos": {
+        "youtube": "https://www.youtube.com/shorts/jNs5piPiNWA",
+        "instagram": "https://www.instagram.com/6u5t4v05ouz4/reel/DfQXXQxJ83L/",
+        "tiktok": "https://www.tiktok.com/@n4r1g4/video/7703705415279807750"
+      },
+      "link_afiliado": "https://meli.la/1nPwaBa",
+      "ficha": [],
+      "historico_preco": [],
+      "conferido_por": null
+    }
+  ]
+}
