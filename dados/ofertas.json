@@ -1,8 +1,71 @@
 {
   "schema_version": 1,
-  "referencia": "2026-11-08T13:20:00-03:00",
-  "atualizado_em": "2026-11-08T13:40:00-03:00",
+  "referencia": "2026-11-09T19:02:00-03:00",
+  "atualizado_em": "2026-11-09T19:02:00-03:00",
   "ofertas": [
+    {
+      "slug": "jogo-panelas-antiaderente-7-camadas-10-pecas",
+      "publish": true,
+      "item_id": "MLB80508625",
+      "catalog_id": null,
+      "titulo": "Jogo de Panelas Antiaderente 7 Camadas 10 Peças Amora Presentes",
+      "titulo_curto": "Jogo de Panelas 10 Peças",
+      "categoria": {
+        "slug": "cozinha",
+        "rotulo": "Cozinha"
+      },
+      "marca": "Amora Presentes",
+      "veredito": "Jogo antiaderente de 7 camadas com 10 peças: 2 panelas, 2 caçarolas, 2 frigideiras, 1 fervedor e 3 utensílios de nylon, com tampas de vidro; o vídeo mostra o ovo não grudando na frigideira.",
+      "capa": "assets/capas/jogo-panelas-7-camadas.jpg",
+      "capa_alt": "Capa do vídeo do jogo de panelas antiaderente de 10 peças, com o preço de R$ 170,90 no Pix",
+      "preco": {
+        "cartao": null,
+        "pix": 170.9,
+        "parcelas": null,
+        "de": 264.9,
+        "desconto_pct": 35,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-09T19:02:00-03:00",
+        "conferido_em": "2026-11-09T19:02:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-09T08:39:00-03:00",
+      "atualizado_em": "2026-11-09T19:02:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/lbja7-GFEzw",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfhPvt8IG-9/",
+        "facebook": "https://www.facebook.com/reel/30133423119581240"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/166UdGS",
+      "ficha": [
+        "10 peças: 2 panelas, 2 caçarolas, 2 frigideiras, 1 fervedor e 3 utensílios de nylon",
+        "Revestimento antiaderente de 7 camadas sobre alumínio",
+        "Tampas de vidro temperado com saída de vapor",
+        "Cabos, alças e pegadores em baquelite antitérmico",
+        "Fogão a gás, elétrico e vitrocerâmico; não é compatível com indução",
+        "Não vai à lava-louças · 1 ano de garantia do fabricante"
+      ],
+      "vendedor": "Loja oficial Amora Presentes",
+      "avaliacao": {
+        "nota": 4.8,
+        "opinioes": 379
+      },
+      "historico_preco": [
+        {
+          "em": "2026-11-09T08:36:00-03:00",
+          "pix": 170.9
+        },
+        {
+          "em": "2026-11-09T19:02:00-03:00",
+          "pix": 170.9
+        }
+      ],
+      "conferido_por": "ML Scout e Dev Fullstack",
+      "capa_tem_preco": true,
+      "capa_preco": 170.9
+    },
     {
       "slug": "kit-3-em-1-the-black-tools",
       "publish": true,
