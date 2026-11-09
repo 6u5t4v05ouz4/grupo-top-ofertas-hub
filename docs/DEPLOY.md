@@ -126,7 +126,8 @@ Como o domínio não é alterado, o rollback é imediato e não depende de DNS.
 |---|---|---|
 | 2026-11-08 17:49 | `d620d8f7-04ae-4235-974d-dcac2284d9e5` (preview) | primeiro build do portal, branch `portal-v1` |
 | 2026-11-08 18:04 | `90b703b8-4580-4035-be35-01d6272f773b` | primeiro deploy de produção do portal |
-| 2026-11-08 22:32 | `8967b757-8879-477e-b857-93cb82c26189` | **produção atual** (commit `6571431`): preços conferidos pelo ML Scout, referência em 18:33 e vereditos corrigidos |
+| 2026-11-09 21:42 | aguardando | conferência de 09/11 (commit `a483b34`): kit caiu para 589,90, colchão para 179,99, refletor com primeira leitura, maquininha passa a preço só-Pix |
+| 2026-11-08 22:32 | `8967b757-8879-477e-b857-93cb82c26189` | produção anterior (commit `6571431`): preços conferidos pelo ML Scout, referência em 18:33 e vereditos corrigidos |
 | 2026-11-08 22:05 | `37df7766-93cb-48de-8cab-a789086b6064` | primeira conferência das 4 ofertas sem preço + 2ª leitura do kit (commit `31dac0a`) |
 | 2026-11-08 18:11 | `8c57b765-6087-47ca-a280-ee7b1c287404` | portal v1 na virada (commit `82daadf`) |
 | 2026-11-03 19:04 | `23146fa8-db64-46b4-ba2c-d9c7be8658bf` | hub antigo, anterior à virada (rollback para o site antigo) |
@@ -136,10 +137,28 @@ DNS e domínio não foram tocados — o alias do projeto continua o mesmo.
 
 ### Rollback
 
-1. Portal com problema: Pages → Deployments → `37df7766…` (22:05) → Rollback.
-2. Portal sem os preços novos: `8c57b765…` (18:11) → Rollback.
-3. Voltar ao hub antigo: `23146fa8…` → Rollback.
-4. Legado: `/index.html`, `/offers.json`, `/app.js` e `/styles.css` respondem **301** para `/`.
+1. Portal com problema: Pages → Deployments → `8967b757…` (08/11 22:12) → Rollback.
+2. Portal sem os preços de 09/11: `37df7766…` (22:05) → Rollback.
+3. Portal sem os preços novos: `8c57b765…` (18:11) → Rollback.
+4. Voltar ao hub antigo: `23146fa8…` → Rollback.
+5. Legado: `/index.html`, `/offers.json`, `/app.js` e `/styles.css` respondem **301** para `/`.
+
+### Preço só-Pix e cartaz com preço antigo (2026-11-09)
+
+Dois casos que o build tratava errado e agora têm regra explícita:
+
+1. **Anúncio que só imprime Pix** (MLB78872569): o valor lido entrou como `cartao` e o build
+   comparou 20,61 (Pix) com 22,90 (cartão), exibindo "Caiu R$ 2,29" — falso. Agora `cartao`
+   pode ser `null`, o valor aparece com o rótulo "no Pix", a linha "No cartão" diz "preço não
+   impresso no anúncio", e o selo compara Pix com Pix (`igual`).
+2. **Cartaz do vídeo com preço de outro dia**: a capa do kit estampa R$ 593,94, mas o preço de
+   hoje é 589,90. As capas passam a declarar `capa_preco`; quando o valor estampado difere do
+   conferido, a home e a ficha dizem que é o preço do dia da gravação.
+
+`check.py` ganhou quatro travas para isso: `data-preco` + `data-pontos` no painel, JSON-LD
+`offers.price` igual ao valor conferido, ficha de preço só-Pix obrigada a dizer "no Pix" e
+"preço não impresso no anúncio", e cartaz divergente obrigado a ser explicado (ficha e destaque
+da home). As quatro foram testadas com falha plantada.
 
 ### Fila de build do Pages (2026-11-08)
 
@@ -151,6 +170,9 @@ segundo roda em ~2 min. O site antigo continua no ar durante a espera.
 ### Pendências pós-virada
 
 - [ ] 7 dias sem incidente: mover `index.html`, `offers.json`, `app.js`, `styles.css` e `assets/` antigo para `legacy/`.
-- [x] Primeira rodada diária do ML Scout: 5 das 6 ofertas saíram de `sem_conferencia` em 08/11 18:33. O kit refletor VERUNTO segue sem preço no `ofertas.json`.
+- [x] Primeira rodada diária do ML Scout: 5 das 6 ofertas saíram de `sem_conferencia` em 08/11 18:33.
+- [x] Refletor VERUNTO: primeira leitura em 09/11 (R$ 40,20), selo "Primeira conferência".
+- [ ] Contrato v1.1: o campo `cartao` aceita `null` (preço só-Pix). Os consumidores do JSON
+      (rotina do ML Scout, Publisher) precisam gravar `pix` nesse caso, não copiar o Pix em `cartao`.
 - [ ] Ficha técnica vazia em 4 ofertas (colchão, carrinho, tênis, maquininha): `ficha: []` e veredito sem detalhe do produto — falta o que o vídeo afirma.
 - [ ] Validar Open Graph e rich results no domínio.
