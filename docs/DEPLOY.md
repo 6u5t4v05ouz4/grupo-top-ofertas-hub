@@ -117,3 +117,40 @@ Como o domínio não é alterado, o rollback é imediato e não depende de DNS.
 | Cache antigo no domínio | baixa | `_headers` só para `/assets/*`; HTML sem cache longo |
 | Preview indexado | baixa | Pages adiciona `noindex` em preview |
 | Perder o hub antigo | baixa | arquivos ficam no repo até a limpeza |
+
+---
+
+## Histórico de deploy (executado)
+
+| Quando (UTC) | Deployment | O que foi |
+|---|---|---|
+| 2026-11-08 17:49 | `d620d8f7-04ae-4235-974d-dcac2284d9e5` (preview) | primeiro build do portal, branch `portal-v1` |
+| 2026-11-08 18:04 | `90b703b8-4580-4035-be35-01d6272f773b` | primeiro deploy de produção do portal |
+| 2026-11-08 22:32 | `8967b757-8879-477e-b857-93cb82c26189` | **produção atual** (commit `6571431`): preços conferidos pelo ML Scout, referência em 18:33 e vereditos corrigidos |
+| 2026-11-08 22:05 | `37df7766-93cb-48de-8cab-a789086b6064` | primeira conferência das 4 ofertas sem preço + 2ª leitura do kit (commit `31dac0a`) |
+| 2026-11-08 18:11 | `8c57b765-6087-47ca-a280-ee7b1c287404` | portal v1 na virada (commit `82daadf`) |
+| 2026-11-03 19:04 | `23146fa8-db64-46b4-ba2c-d9c7be8658bf` | hub antigo, anterior à virada (rollback para o site antigo) |
+
+Config aplicada no projeto: build `python build.py`, saída `public`, raiz do repo, Python 3.13 via `.python-version`.
+DNS e domínio não foram tocados — o alias do projeto continua o mesmo.
+
+### Rollback
+
+1. Portal com problema: Pages → Deployments → `37df7766…` (22:05) → Rollback.
+2. Portal sem os preços novos: `8c57b765…` (18:11) → Rollback.
+3. Voltar ao hub antigo: `23146fa8…` → Rollback.
+4. Legado: `/index.html`, `/offers.json`, `/app.js` e `/styles.css` respondem **301** para `/`.
+
+### Fila de build do Pages (2026-11-08)
+
+Travou em `queued` três vezes (22:02, 22:10 e antes em 18:07). O que resolve: apagar
+o deployment enfileirado (`DELETE /pages/projects/grupo-top-ofertas-hub/deployments/<id>`)
+e dar um commit vazio na `main`. O primeiro build de cada push não sai da fila; o
+segundo roda em ~2 min. O site antigo continua no ar durante a espera.
+
+### Pendências pós-virada
+
+- [ ] 7 dias sem incidente: mover `index.html`, `offers.json`, `app.js`, `styles.css` e `assets/` antigo para `legacy/`.
+- [x] Primeira rodada diária do ML Scout: 5 das 6 ofertas saíram de `sem_conferencia` em 08/11 18:33. O kit refletor VERUNTO segue sem preço no `ofertas.json`.
+- [ ] Ficha técnica vazia em 4 ofertas (colchão, carrinho, tênis, maquininha): `ficha: []` e veredito sem detalhe do produto — falta o que o vídeo afirma.
+- [ ] Validar Open Graph e rich results no domínio.

@@ -68,6 +68,20 @@ def pct(valor: float | None) -> str:
     return f"{valor:g}%".replace(".", ",")
 
 
+def tipo_preco(preco: dict) -> str:
+    """Qual valor é o "a partir de": cartão, ou Pix quando o anúncio só imprime Pix."""
+    return "cartao" if preco.get("cartao") is not None else "pix"
+
+
+def valor_vista(preco: dict) -> float:
+    return preco["cartao"] if preco.get("cartao") is not None else preco["pix"]
+
+
+def so_pix(preco: dict) -> bool:
+    """Anúncio que não imprime preço de cartão: o valor mostrado é o do Pix."""
+    return preco.get("cartao") is None
+
+
 def quando(iso: str) -> datetime:
     return datetime.fromisoformat(iso)
 
@@ -168,23 +182,35 @@ def carregar() -> dict:
                 erros.append(f"{nome}: preço sem price_checked_at")
             if preco.get("fonte") not in ("anuncio", "api"):
                 erros.append(f"{nome}: preço.fonte deve ser anuncio ou api")
-            if preco.get("cartao") is None:
-                erros.append(f"{nome}: preço sem valor de cartão")
+            if preco.get("cartao") is None and preco.get("pix") is None:
+                erros.append(f"{nome}: preço sem valor de cartão nem de Pix")
             parcelas = preco.get("parcelas")
             if parcelas and not parcelas.get("sem_juros"):
                 erros.append(f"{nome}: parcelamento só entra quando é sem juros")
+            tipo = tipo_preco(preco)
             hist = o.get("historico_preco") or []
-            if not hist:
-                erros.append(f"{nome}: preço sem histórico")
+            pontos = [h for h in hist if h.get(tipo) is not None]
+            if not pontos:
+                erros.append(f"{nome}: preço sem histórico de {tipo}")
             else:
-                ultimo = [h for h in hist if h.get("cartao") is not None][-1]
-                if abs(ultimo["cartao"] - preco["cartao"]) > 0.001:
-                    erros.append(f"{nome}: último ponto do histórico difere de preco.cartao")
+                ultimo = pontos[-1]
+                if abs(ultimo[tipo] - preco[tipo]) > 0.001:
+                    erros.append(f"{nome}: último ponto do histórico difere de preco.{tipo}")
                 if ultimo.get("em") != preco.get("price_checked_at"):
                     erros.append(f"{nome}: último ponto do histórico difere de price_checked_at")
+            if valor_vista(preco) <= 0:
+                erros.append(f"{nome}: valor à vista precisa ser positivo")
         else:
             if o.get("disponibilidade") not in ("Unknown", "OutOfStock"):
                 erros.append(f"{nome}: sem preço, disponibilidade deve ser Unknown")
+        # preço estampado na capa do vídeo: se estiver anotado, precisa ser número
+        if o.get("capa_preco") is not None:
+            if not o.get("capa_tem_preco"):
+                erros.append(f"{nome}: capa_preco exige capa_tem_preco")
+            try:
+                float(o["capa_preco"])
+            except (TypeError, ValueError):
+                erros.append(f"{nome}: capa_preco precisa ser número")
 
     if erros:
         print("FALHA NA VALIDAÇÃO:\n" + "\n".join(" - " + e for e in erros), file=sys.stderr)
@@ -199,13 +225,15 @@ def calcular_estado(oferta: dict) -> dict:
         status = "indisponivel" if oferta["disponibilidade"] == "OutOfStock" else "sem_conferencia"
         return {"status": status, "delta": None, "rotulo": BADGE[status][1]}
 
-    pontos = [h for h in oferta.get("historico_preco", []) if h.get("cartao") is not None]
+    # comparação só entre leituras do mesmo tipo: cartão com cartão, Pix com Pix.
+    tipo = tipo_preco(preco)
+    pontos = [h for h in oferta.get("historico_preco", []) if h.get(tipo) is not None]
     delta = None
     status = "primeira"
     if oferta["disponibilidade"] == "OutOfStock":
         status = "indisponivel"
     elif len(pontos) >= 2:
-        delta = round(pontos[-1]["cartao"] - pontos[-2]["cartao"], 2)
+        delta = round(pontos[-1][tipo] - pontos[-2][tipo], 2)
         status = "igual"
         if delta < 0:
             status = "caiu"
@@ -389,7 +417,9 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
     de = f'de <s>{money(preco["de"])}</s>' if preco.get("de") else ""
     desconto = f' · {pct(preco["desconto_pct"])} OFF' if preco.get("desconto_pct") else ""
     pix = (f'<div class="painel__linha"><span>No Pix</span><span>{money(preco["pix"])}</span></div>'
-           if preco.get("pix") else "")
+           if preco.get("pix") and not so_pix(preco) else "")
+    cartao_ausente = ('<div class="painel__linha"><span>No cartão</span>'
+                      '<span>preço não impresso no anúncio</span></div>' if so_pix(preco) else "")
     vendedor = (f'<div class="painel__linha"><span>Vendido por</span><span>{esc(oferta["vendedor"])}</span></div>'
                 if oferta.get("vendedor") else "")
     avaliacao = (""
@@ -403,9 +433,10 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
         </div>
         <div class="preco">
           <p class="preco__de">{de}{desconto}</p>
-          <p class="preco__valor"><small>a partir de</small>{money(preco["cartao"])}</p>
+          <p class="preco__valor"><small>a partir de</small>{money(valor_vista(preco))}{'<small> no Pix</small>' if so_pix(preco) else ''}</p>
         </div>
         {pix}
+        {cartao_ausente}
         <div class="painel__linha"><span>Parcelado</span><span>{linha_parcela}</span></div>
         {vendedor}
         {avaliacao}
@@ -435,10 +466,12 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
     if preco:
         de = f'de <s>{money(preco["de"])}</s>' if preco.get("de") else ""
         desconto = f' · {pct(preco["desconto_pct"])} OFF no anúncio' if preco.get("desconto_pct") else ""
-        valor = (f'<p class="preco__valor"><small>a partir de</small>{money(preco["cartao"])}</p>')
+        valor = (f'<p class="preco__valor"><small>a partir de</small>{money(valor_vista(preco))}'
+                 f'{"<small> no Pix</small>" if so_pix(preco) else ""}</p>')
         parcela = f'{preco["parcelas"]["quantidade"]}x {money(preco["parcelas"]["valor"])} sem juros' \
             if preco.get("parcelas") else ""
-        pix = f'<span>· {money(preco["pix"])} no Pix</span>' if preco.get("pix") else ""
+        pix = (f'<span>· {money(preco["pix"])} no Pix</span>'
+               if preco.get("pix") and not so_pix(preco) else "")
         bloco_preco = f"""<div class="preco">
           <p class="preco__de">{de}{desconto}</p>
           {valor}
@@ -446,6 +479,11 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
         </div>"""
         conferido = (f'Preço lido no anúncio em <strong>{esc(data_hora(preco["price_checked_at"]))}</strong>. '
                      f'Pode mudar depois disso — <a href="como-conferimos/index.html">veja como conferimos</a>.')
+        # capa que estampa preço: o cartaz é do dia da gravação, e o texto diz isso
+        if (destaque.get("capa") and destaque.get("capa_preco") is not None
+                and abs(destaque["capa_preco"] - valor_vista(preco)) > 0.001):
+            conferido += (f' O cartaz do vídeo mostra o preço do dia da gravação, '
+                          f'{money(destaque["capa_preco"])}; vale o preço conferido acima.')
     else:
         bloco_preco = '<p class="preco__vazio">Sem preço confirmado</p>'
         conferido = ('Ainda sem preço conferido. O número só aparece depois da leitura no anúncio, '
@@ -485,7 +523,7 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
             <div class="mini__corpo">
               <span class="mini__cat">{esc(o["categoria"]["rotulo"])}</span>
               <h3 class="mini__titulo"><a href="{o["_url"]}index.html">{esc(o["titulo_curto"])}</a></h3>
-              <p class="mini__preco">{money(o["_preco"]["cartao"]) if o["_preco"] else "Sem preço"}</p>
+              <p class="mini__preco">{money(valor_vista(o["_preco"])) + (" no Pix" if so_pix(o["_preco"]) else "") if o["_preco"] else "Sem preço"}</p>
               <p class="mini__detalhe">{esc(o["_estado"]["rotulo"])}</p>
               <p class="mini__conf">Conferido {esc(data_curta(o["_preco"]["price_checked_at"]))}, {esc(hora(o["_preco"]["price_checked_at"]))}</p>
             </div>
@@ -606,7 +644,9 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
 
 def mini_card(oferta: dict, profundidade: int) -> str:
     preco = oferta["_preco"]
-    valor = money(preco["cartao"]) if preco else "Sem preço"
+    valor = money(valor_vista(preco)) if preco else "Sem preço"
+    if preco and so_pix(preco):
+        valor += " no Pix"
     detalhe = oferta["_estado"]["rotulo"] if not preco else (
         f'{preco["parcelas"]["quantidade"]}x {money(preco["parcelas"]["valor"])} sem juros'
         if preco.get("parcelas") else oferta["_estado"]["rotulo"])
@@ -630,9 +670,9 @@ def item_card(oferta: dict, profundidade: int) -> str:
     preco = oferta["_preco"]
     estado = oferta["_estado"]
     if preco:
-        valor = money(preco["cartao"])
+        valor = money(valor_vista(preco))
         detalhe = (f'{preco["parcelas"]["quantidade"]}x {money(preco["parcelas"]["valor"])} sem juros'
-                   if preco.get("parcelas") else "no anúncio")
+                   if preco.get("parcelas") else ("no Pix" if so_pix(preco) else "no anúncio"))
         rodape_preco = f"Conferido <strong>{esc(data_curta(preco['price_checked_at']))}, {esc(hora(preco['price_checked_at']))}</strong>"
     else:
         valor = "Sem preço confirmado"
@@ -661,9 +701,10 @@ def pagina_arquivo(ofertas: list[dict], referencia: str) -> str:
         estado = o["_estado"]
         preco = o["_preco"]
         if preco:
-            valor = money(preco["cartao"])
-            extra = (f'{preco["parcelas"]["quantidade"]}x {money(preco["parcelas"]["valor"])}'
-                     if preco.get("parcelas") else (f'de {money(preco["de"])}' if preco.get("de") else ""))
+            valor = money(valor_vista(preco))
+            extra = ("no Pix" if so_pix(preco) else
+                     (f'{preco["parcelas"]["quantidade"]}x {money(preco["parcelas"]["valor"])}'
+                      if preco.get("parcelas") else (f'de {money(preco["de"])}' if preco.get("de") else "")))
             valor_html = f'{valor}<small>{esc(extra)}</small>'
             conferido = f'{data_curta(preco["price_checked_at"])}, {hora(preco["price_checked_at"])}'
         else:
@@ -776,9 +817,10 @@ def pagina_oferta(oferta: dict, ofertas: list[dict], referencia: str) -> str:
             f"""<li>
           <span class="ponto" aria-hidden="true"></span>
           <time datetime="{esc(p["em"])}">{esc(data(p["em"]))} · {esc(hora(p["em"]))}</time>
-          <span class="valor">{money(p["cartao"])}</span>
+          <span class="valor">{money(p["cartao"] if p.get("cartao") is not None else p.get("pix"))}
+          {'<small> no Pix</small>' if p.get('cartao') is None else ''}</span>
           <span class="nota">{'Primeira conferência — preço que entrou no vídeo.' if i == 0 else 'Reconferência.'}
-          {f' No Pix, {money(p["pix"])}.' if p.get('pix') else ''}</span>
+          {f' No Pix, {money(p["pix"])}.' if p.get('pix') and p.get('cartao') is not None else ''}</span>
         </li>"""
             for i, p in enumerate(oferta["historico_preco"])
         )
@@ -836,7 +878,7 @@ def pagina_oferta(oferta: dict, ofertas: list[dict], referencia: str) -> str:
             "@type": "Offer",
             "url": url_absoluta(oferta["_url"]),
             "priceCurrency": preco["moeda"],
-            "price": f'{preco["cartao"]:.2f}',
+            "price": f'{valor_vista(preco):.2f}',
             "availability": "https://schema.org/InStock" if oferta["disponibilidade"] == "InStock"
             else "https://schema.org/OutOfStock",
             "seller": {"@type": "Organization", "name": "Mercado Livre"},
@@ -896,10 +938,10 @@ def pagina_oferta(oferta: dict, ofertas: list[dict], referencia: str) -> str:
           <span class="video__legenda"><span>Vídeo do produto</span><span>{esc(ROTULO_CANAL['youtube'] if 'youtube' in oferta['videos'] else 'Vídeo')}</span></span>
         </a>
         <ul class="canais-video" aria-label="Onde assistir ao vídeo">{canais}</ul>
-        <p class="capa-fonte">{'Imagem: capa do vídeo publicado em ' + esc(data(oferta['postado_em'])) + '. Nenhuma foto do anúncio é usada no site.' if capa else 'A capa deste vídeo traz o preço do dia da gravação. Sem conferência atual, ela não é exibida — a página usa a marca no lugar.'}</p>
+        <p class="capa-fonte">{'Imagem: capa do vídeo publicado em ' + esc(data(oferta['postado_em'])) + '. Nenhuma foto do anúncio é usada no site.' if capa else 'A capa deste vídeo traz o preço do dia da gravação. Sem conferência atual, ela não é exibida — a página usa a marca no lugar.'}{(' O cartaz estampa o preço do dia da gravação, ' + money(oferta['capa_preco']) + '.') if (capa and oferta.get('capa_preco') is not None) else ''}</p>
       </div>
 
-      <aside class="painel" data-estado="{estado['status']}" data-leituras="{len([h for h in oferta['historico_preco'] if h.get('cartao') is not None])}">
+      <aside class="painel" data-estado="{estado['status']}" data-leituras="{len([h for h in oferta['historico_preco'] if preco and h.get(tipo_preco(preco)) is not None])}" data-pontos="{len(oferta['historico_preco'])}" data-preco="{tipo_preco(preco) if preco else 'nenhum'}">
         {painel_preco(oferta, profundidade)}
       </aside>
     </div>
@@ -952,6 +994,7 @@ def pagina_como(referencia: str) -> str:
       <ul>
         <li>O preço no cartão, direto da página do anúncio.</li>
         <li>O preço no Pix, quando o anúncio mostra um.</li>
+        <li>Quando o anúncio só imprime o preço no Pix, o portal mostra esse valor, marcado como Pix, e diz que o preço de cartão não aparece no anúncio.</li>
         <li>O parcelamento, somente quando é sem juros.</li>
         <li>Se o anúncio está no ar e se o link de afiliado abre o produto.</li>
         <li>A data e a hora da leitura, em horário de Brasília.</li>
@@ -977,9 +1020,9 @@ def pagina_como(referencia: str) -> str:
       <ul>
         <li><strong>Primeira conferência:</strong> só existe uma leitura, então não há comparação — e o selo diz isso.</li>
         <li><strong>Preço igual:</strong> a partir da segunda leitura, o valor é o mesmo da anterior.</li>
-        <li><strong>Caiu / subiu:</strong> a diferença em reais entre as duas últimas leituras.</li>
-        <li><strong>Indisponível:</strong> o anúncio saiu do ar.</li>
+        <li><strong>Caiu / subiu:</strong> a diferença em reais entre as duas últimas leituras.</li>        <li><strong>Indisponível:</strong> o anúncio saiu do ar.</li>
         <li><strong>Sem conferência:</strong> ainda não houve leitura depois da postagem.</li>
+        <li><strong>Comparação do mesmo tipo:</strong> cartão com cartão, Pix com Pix. Um valor de Pix nunca é comparado com um de cartão.</li>
       </ul>
       <p>O cálculo é feito no build do site, a partir do histórico de leituras. O histórico é só de acréscimo:
       um ponto antigo nunca é reescrito.</p>
@@ -1084,13 +1127,17 @@ def escrever(caminho: str, conteudo: str) -> None:
 
 
 def gerar_sitemap(ofertas: list[dict], referencia: str) -> str:
+    def ultima_mudanca(o: dict) -> str:
+        datas = [o.get("atualizado_em"), o.get("postado_em"), (o.get("preco") or {}).get("price_checked_at")]
+        return max([d for d in datas if d], key=quando)
+
     paginas = [
         ("", referencia),
         ("ofertas/", referencia),
         ("como-conferimos/", referencia),
         ("aviso-de-afiliado/", referencia),
         ("canais/", referencia),
-    ] + [(o["_url"], o["atualizado_em"]) for o in ofertas]
+    ] + [(o["_url"], ultima_mudanca(o)) for o in ofertas]
     urls = "".join(
         f"  <url>\n    <loc>{url_absoluta(rota)}</loc>\n    <lastmod>{data(iso)[6:10]}-{data(iso)[3:5]}-{data(iso)[0:2]}</lastmod>\n  </url>\n"
         for rota, iso in paginas
@@ -1144,7 +1191,7 @@ def main() -> None:
     print(f"build ok · {paginas} páginas · {len(ofertas)} ofertas · {conferidas} conferida(s) em 24 h · "
           f"{tamanho / 1024:.0f} KB · referência {data_hora(referencia)}")
     for o in ofertas:
-        print(f"  {o['_url']:45} {o['_estado']['status']:16} {money(o['_preco']['cartao']) if o['_preco'] else 'sem preço'}")
+        print(f"  {o['_url']:45} {o['_estado']['status']:16} {money(valor_vista(o['_preco'])) if o['_preco'] else 'sem preço'}")
 
 
 if __name__ == "__main__":

@@ -138,11 +138,11 @@ def main() -> None:
         if "/oferta/" not in html.as_posix():
             continue
         bruto = html.read_text(encoding="utf-8")
-        m = re.search(r'<aside class="painel" data-estado="([a-z_]+)" data-leituras="(\d+)"', bruto)
+        m = re.search(r'<aside class="painel" data-estado="([a-z_]+)" data-leituras="(\d+)" data-pontos="(\d+)" data-preco="([a-z]+)"', bruto)
         if not m:
             falhas.append(f"{html.relative_to(PUB)}: painel sem data-estado/data-leituras")
             continue
-        estado, leituras = m.group(1), int(m.group(2))
+        estado, leituras, pontos_hist = m.group(1), int(m.group(2)), int(m.group(3))
         if estado not in estados_ok:
             falhas.append(f"{html.relative_to(PUB)}: estado desconhecido: {estado}")
         if leituras == 0 and estado not in ("sem_conferencia", "indisponivel"):
@@ -152,8 +152,10 @@ def main() -> None:
         if leituras >= 2 and estado == "primeira":
             falhas.append(f"{html.relative_to(PUB)}: {leituras} leituras não podem ser 'primeira'")
         pontos = bruto.count('class="ponto"')
-        if "/oferta/" in html.as_posix() and pontos != leituras:
-            falhas.append(f"{html.relative_to(PUB)}: {pontos} ponto(s) na linha do tempo para {leituras} leitura(s)")
+        if pontos != pontos_hist:
+            falhas.append(f"{html.relative_to(PUB)}: {pontos} ponto(s) na linha do tempo para {pontos_hist} leitura(s) no histórico")
+        if leituras > pontos_hist:
+            falhas.append(f"{html.relative_to(PUB)}: {leituras} leituras comparáveis para {pontos_hist} registradas")
         # o selo é o do painel desta ficha; a lista de outras ofertas no rodapé
         # pode legitimamente mostrar "Preço igual" de outra oferta
         m_painel = re.search(r'<aside class="painel".*?</aside>', bruto, re.S)
@@ -186,6 +188,62 @@ def main() -> None:
         if estado != "sem_conferencia" and re.search(r"não (re)?conferid|ainda não foi (re)?conferid", texto):
             falhas.append(f"{html.relative_to(PUB)}: tem preço conferido mas o texto diz que não foi conferido")
     ok.append("selo x leituras: consistente nas 6 fichas")
+
+    # --- exatidão do valor exibido: tipo de preço, JSON-LD e cartaz ---
+    dados = json.loads((RAIZ / "dados" / "ofertas.json").read_text(encoding="utf-8"))
+
+    def valor_vista(preco: dict) -> float:
+        return preco["cartao"] if preco.get("cartao") is not None else preco["pix"]
+
+    home_html = (PUB / "index.html").read_text(encoding="utf-8")
+    m_destaque = re.search(r'<section class="destaque".*?</section>', home_html, re.S)
+    destaque = ""
+    if m_destaque:
+        m_url = re.search(r'href="(oferta/[^/"]+)/index\.html"', m_destaque.group(0))
+        if m_url:
+            destaque = m_url.group(1) + "/"
+    texto_home = " ".join(pagina_de(PUB / "index.html").texto)
+
+    for o in dados["ofertas"]:
+        if not o.get("publish", True):
+            continue
+        preco = o.get("preco")
+        ficha = PUB / "oferta" / o["slug"] / "index.html"
+        if not ficha.exists():
+            falhas.append(f"{o['slug']}: ficha não gerada")
+            continue
+        p = pagina_de(ficha)
+        texto = " ".join(p.texto)
+        if not preco:
+            continue
+        esperado = f"{valor_vista(preco):.2f}"
+        precos = []
+        for bloco in p.jsonld:
+            try:
+                j = json.loads(bloco)
+            except json.JSONDecodeError:
+                continue
+            if j.get("@type") == "Product" and isinstance(j.get("offers"), dict):
+                precos.append(j["offers"].get("price"))
+        if not precos:
+            falhas.append(f"{o['slug']}: ficha sem offers.price no JSON-LD")
+        for achado in precos:
+            if achado != esperado:
+                falhas.append(f"{o['slug']}: JSON-LD price {achado} difere do valor conferido {esperado}")
+        # anúncio que só imprime Pix: a ficha precisa dizer que o valor é do Pix
+        if preco.get("cartao") is None:
+            if "no Pix" not in texto:
+                falhas.append(f"{o['slug']}: preço é do Pix mas a ficha não diz 'no Pix'")
+            if "preço não impresso no anúncio" not in texto:
+                falhas.append(f"{o['slug']}: preço é do Pix mas a ficha não avisa que o de cartão não aparece")
+        # cartaz do vídeo que estampa preço diferente do conferido precisa ser explicado
+        if o.get("capa_preco") is not None and abs(float(o["capa_preco"]) - valor_vista(preco)) > 0.001:
+            explica_ficha = "preço do dia da gravação" in texto
+            if not explica_ficha:
+                falhas.append(f"{o['slug']}: cartaz estampa {o['capa_preco']} e a ficha não explica")
+            if ("oferta/" + o["slug"] + "/") == destaque and "preço do dia da gravação" not in texto_home:
+                falhas.append("index.html: destaque com cartaz de preço antigo sem explicação")
+    ok.append("preços: JSON-LD, tipo (cartão/Pix) e cartaz conferidos")
 
     # sitemap
     sm = PUB / "sitemap.xml"

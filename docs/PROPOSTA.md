@@ -100,9 +100,10 @@ Um arquivo `dados/ofertas.json` com um array. Campos por oferta:
 | `capa` | caminho \| null | não | **capa do vídeo**, local, 9:16 |
 | `capa_alt` | string | sim | descrição da capa |
 | `capa_tem_preco` | bool | não | capa que mostra preço: só é exibida quando existe preço conferido |
+| `capa_preco` | number | não | valor estampado na capa; se diferir do preço conferido, a página diz que é o preço do dia da gravação |
 | `preco` | objeto \| null | não | `null` = nenhum valor exibido |
-| `preco.cartao` | number | sim, se há preço | valor da tela no cartão |
-| `preco.pix` | number \| null | não | só se a tela mostra Pix |
+| `preco.cartao` | number \| null | sim, se há preço | valor da tela no cartão; `null` quando o anúncio só imprime Pix |
+| `preco.pix` | number \| null | não | só se a tela mostra Pix; **obrigatório** quando `cartao` é `null` |
 | `preco.parcelas` | `{quantidade, valor, sem_juros}` \| null | não | **só sem juros** |
 | `preco.de` | number \| null | não | preço riscado do anúncio |
 | `preco.desconto_pct` | number \| null | não | o que a tela informa, não calcular |
@@ -118,7 +119,7 @@ Um arquivo `dados/ofertas.json` com um array. Campos por oferta:
 | `ficha[]` | string[] | não | só o que está na página do anúncio |
 | `vendedor` | string \| null | não | loja oficial, quando identificada |
 | `avaliacao` | `{nota, opinioes}` \| null | não | só se lida no anúncio e datada |
-| `historico_preco[]` | `{em, cartao, pix, status}` | sim, se há preço | append-only |
+| `historico_preco[]` | `{em, cartao, pix, status}` | sim, se há preço | append-only; cada ponto traz o valor do tipo correspondente |
 | `conferido_por` | string \| null | sim se há preço | quem leu o preço |
 
 Topo do arquivo: `schema_version` (1), `referencia` (data/hora da última carga, usada para "hoje"), `atualizado_em`.
@@ -126,18 +127,21 @@ Topo do arquivo: `schema_version` (1), `referencia` (data/hora da última carga,
 ### Cálculo do estado (no build, nunca à mão)
 
 ```
-pontos = histórico com cartao != null
+tipo   = "cartao" se preco.cartao != null, senão "pix"
+pontos = histórico com o campo desse tipo != null
 
 sem preço + disponibilidade OutOfStock -> indisponivel
 sem preço                              -> sem_conferencia
 com preço + OutOfStock                 -> indisponivel
 com preço, 1 ponto no histórico        -> primeira   (selo "Primeira conferência")
 com preço, 2+ pontos:
-  delta = último.cartao - penúltimo.cartao
+  delta = último[tipo] - penúltimo[tipo]
   |delta| < 0,01 -> igual
   delta < 0      -> caiu (mostra "Caiu R$ X")
   delta > 0      -> subiu (mostra "Subiu R$ X")
 ```
+
+A comparação é **sempre do mesmo tipo**: cartão com cartão, Pix com Pix. Se o anúncio deixa de imprimir o preço de cartão, o portal passa a mostrar o Pix marcado como Pix e compara com o Pix anterior — nunca desconta o valor de cartão do dia anterior do valor de Pix de hoje.
 
 Estados possíveis: `primeira`, `igual`, `caiu`, `subiu`, `indisponivel`, `sem_conferencia`.
 
@@ -149,7 +153,8 @@ O JSON **não aceita** `status` nem `delta` escritos à mão: o build rejeita o 
 
 - preço sem `price_checked_at` → erro.
 - parcelamento com juros → erro.
-- último ponto do histórico diferente de `preco.cartao` ou de `price_checked_at` → erro.
+- último ponto do histórico diferente de `preco.cartao`/`preco.pix` (conforme o tipo) ou de `price_checked_at` → erro.
+- `capa_preco` sem `capa_tem_preco`, ou valor não numérico → erro.
 - capa apontando para arquivo inexistente → erro.
 - vídeo sem `https://` → erro.
 - slug duplicado, categoria fora da lista, oferta sem vídeo → erro.

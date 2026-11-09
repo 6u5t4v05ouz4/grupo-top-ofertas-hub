@@ -19,19 +19,19 @@
       "capa": "assets/capas/kit-3-em-1-the-black-tools.jpg",
       "capa_alt": "Capa do vídeo do kit 3 em 1 The Black Tools, com a maleta aberta e o preço de R$ 593,94",
       "preco": {
-        "cartao": 593.94,
-        "pix": 571.04,
+        "cartao": 589.9,
+        "pix": null,
         "parcelas": {
           "quantidade": 10,
-          "valor": 59.39,
+          "valor": 58.99,
           "sem_juros": true
         },
         "de": 1079.9,
         "desconto_pct": 45,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T18:33:24-03:00",
-        "conferido_em": "2026-11-08T18:33:24-03:00"
+        "price_checked_at": "2026-11-09T18:36:22-03:00",
+        "conferido_em": "2026-11-09T18:36:22-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -66,9 +66,15 @@
         {
           "em": "2026-11-08T18:33:24-03:00",
           "cartao": 593.94
+        },
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 589.9
         }
       ],
-      "conferido_por": "ML Scout"
+      "conferido_por": "ML Scout",
+      "capa_tem_preco": true,
+      "capa_preco": 593.94
     },
     {
       "slug": "colchao-dellamed-air-plus",
@@ -86,15 +92,15 @@
       "capa": "assets/capas/colchao-dellamed-air-plus.jpg",
       "capa_alt": "Capa do vídeo do colchão antiescaras Dellamed Air Plus",
       "preco": {
-        "cartao": 199.99,
-        "pix": null,
+        "cartao": 179.99,
+        "pix": 170.99,
         "parcelas": null,
         "de": 399.0,
-        "desconto_pct": 49,
+        "desconto_pct": 57,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T18:33:24-03:00",
-        "conferido_em": "2026-11-08T18:33:24-03:00"
+        "price_checked_at": "2026-11-09T18:36:22-03:00",
+        "conferido_em": "2026-11-09T18:36:22-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T15:20:00-03:00",
@@ -110,6 +116,10 @@
         {
           "em": "2026-11-08T18:33:24-03:00",
           "cartao": 199.99
+        },
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 179.99
         }
       ],
       "conferido_por": "ML Scout"
@@ -137,8 +147,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T18:33:24-03:00",
-        "conferido_em": "2026-11-08T18:33:24-03:00"
+        "price_checked_at": "2026-11-09T18:36:22-03:00",
+        "conferido_em": "2026-11-09T18:36:22-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T18:19:00-03:00",
@@ -155,10 +165,15 @@
         {
           "em": "2026-11-08T18:33:24-03:00",
           "cartao": 74.9
+        },
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 74.9
         }
       ],
       "conferido_por": "ML Scout",
-      "capa_tem_preco": true
+      "capa_tem_preco": true,
+      "capa_preco": 74.9
     },
     {
       "slug": "tenis-kappa-pulse-supra",
@@ -183,8 +198,8 @@
         "desconto_pct": 48,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T18:33:24-03:00",
-        "conferido_em": "2026-11-08T18:33:24-03:00"
+        "price_checked_at": "2026-11-09T18:36:22-03:00",
+        "conferido_em": "2026-11-09T18:36:22-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-05T16:05:00-03:00",
@@ -200,10 +215,15 @@
         {
           "em": "2026-11-08T18:33:24-03:00",
           "cartao": 134.67
+        },
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 134.67
         }
       ],
       "conferido_por": "ML Scout",
-      "capa_tem_preco": true
+      "capa_tem_preco": true,
+      "capa_preco": 134.67
     },
     {
       "slug": "maquininha-dragao-crowley",
@@ -221,19 +241,19 @@
       "capa": "assets/capas/maquininha-dragao-crowley.jpg",
       "capa_alt": "Capa do vídeo da maquininha Dragão Crowley",
       "preco": {
-        "cartao": 22.9,
+        "cartao": null,
         "pix": 20.61,
         "parcelas": null,
         "de": 34.9,
-        "desconto_pct": 34,
+        "desconto_pct": 40,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-08T18:33:24-03:00",
-        "conferido_em": "2026-11-08T18:33:24-03:00"
+        "price_checked_at": "2026-11-09T18:36:22-03:00",
+        "conferido_em": "2026-11-09T18:36:22-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-04T11:46:00-03:00",
-      "atualizado_em": "2026-11-04T11:46:00-03:00",
+      "atualizado_em": "2026-11-09T18:36:22-03:00",
       "videos": {
         "youtube": "https://youtube.com/shorts/y0bcFvQQok0",
         "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfUYDWuoH4m/",
@@ -244,7 +264,12 @@
       "historico_preco": [
         {
           "em": "2026-11-08T18:33:24-03:00",
-          "cartao": 22.9
+          "cartao": 22.9,
+          "pix": 20.61
+        },
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "pix": 20.61
         }
       ],
       "conferido_por": "ML Scout"
@@ -261,13 +286,23 @@
         "rotulo": "Iluminação"
       },
       "marca": "VERUNTO",
-      "veredito": "Kit com dois refletores Super LED de 400W, recomendado no vídeo de 02/11. Preço não reconferido desde a postagem.",
+      "veredito": "Kit com dois refletores Super LED de 400W, recomendado no vídeo de 02/11.",
       "capa": "assets/capas/kit-refletor-led-verunto-400w.jpg",
       "capa_alt": "Capa do vídeo do kit de dois refletores Super LED 400W",
-      "preco": null,
-      "disponibilidade": "Unknown",
+      "preco": {
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "cartao": 40.2,
+        "pix": null,
+        "parcelas": null,
+        "de": 99.98,
+        "desconto_pct": 59,
+        "conferido_em": "2026-11-09T18:36:22-03:00",
+        "price_checked_at": "2026-11-09T18:36:22-03:00"
+      },
+      "disponibilidade": "InStock",
       "postado_em": "2026-11-02T12:00:00-03:00",
-      "atualizado_em": "2026-11-02T12:00:00-03:00",
+      "atualizado_em": "2026-11-09T18:36:22-03:00",
       "videos": {
         "youtube": "https://www.youtube.com/shorts/jNs5piPiNWA",
         "instagram": "https://www.instagram.com/6u5t4v05ouz4/reel/DfQXXQxJ83L/",
@@ -275,8 +310,13 @@
       },
       "link_afiliado": "https://meli.la/1nPwaBa",
       "ficha": [],
-      "historico_preco": [],
-      "conferido_por": null
+      "historico_preco": [
+        {
+          "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 40.2
+        }
+      ],
+      "conferido_por": "ML Scout"
     }
   ]
 }
