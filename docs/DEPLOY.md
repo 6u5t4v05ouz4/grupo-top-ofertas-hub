@@ -126,7 +126,7 @@ Como o domínio não é alterado, o rollback é imediato e não depende de DNS.
 |---|---|---|
 | 2026-11-08 17:49 | `d620d8f7-04ae-4235-974d-dcac2284d9e5` (preview) | primeiro build do portal, branch `portal-v1` |
 | 2026-11-08 18:04 | `90b703b8-4580-4035-be35-01d6272f773b` | primeiro deploy de produção do portal |
-| 2026-11-09 21:42 | aguardando | conferência de 09/11 (commit `a483b34`): kit caiu para 589,90, colchão para 179,99, refletor com primeira leitura, maquininha passa a preço só-Pix |
+| 2026-11-09 21:47 | `78a5098f-c733-4fc0-8d8f-fb77814831a9` | **produção atual** (commit `b4c3d77`, dados de `a483b34`): kit 589,90 (-4,04), colchão 179,99 (-20,00), ATENTU e Kappa iguais, refletor primeira leitura 40,20, maquininha em preço só-Pix |
 | 2026-11-08 22:32 | `8967b757-8879-477e-b857-93cb82c26189` | produção anterior (commit `6571431`): preços conferidos pelo ML Scout, referência em 18:33 e vereditos corrigidos |
 | 2026-11-08 22:05 | `37df7766-93cb-48de-8cab-a789086b6064` | primeira conferência das 4 ofertas sem preço + 2ª leitura do kit (commit `31dac0a`) |
 | 2026-11-08 18:11 | `8c57b765-6087-47ca-a280-ee7b1c287404` | portal v1 na virada (commit `82daadf`) |
