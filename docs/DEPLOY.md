@@ -120,13 +120,22 @@ Como o domínio não é alterado, o rollback é imediato e não depende de DNS.
 
 ---
 
+## Leitura de preço da oferta de 09/11 (panelas)
+
+O brief v2 anotou “outros meios R$ 179,90”, mas esse valor vem da linha *3 produtos novos a partir de
+R$ 179,90* (outros vendedores), não do buy box. O box do item imprime só **R$ 170,90 no Pix** e
+12x com Mercado Parcelado (com juros). Conferido no navegador em 09/11 19:02: `de R$ 264,90`,
+35% OFF, 4,8 · 379 opiniões. Por isso a oferta entrou como **só-Pix** (`cartao: null`), e a
+linha “No cartão” diz que o preço não foi impresso no anúncio.
+
 ## Histórico de deploy (executado)
 
 | Quando (UTC) | Deployment | O que foi |
 |---|---|---|
 | 2026-11-08 17:49 | `d620d8f7-04ae-4235-974d-dcac2284d9e5` (preview) | primeiro build do portal, branch `portal-v1` |
 | 2026-11-08 18:04 | `90b703b8-4580-4035-be35-01d6272f773b` | primeiro deploy de produção do portal |
-| 2026-11-09 21:47 | `78a5098f-c733-4fc0-8d8f-fb77814831a9` | **produção atual** (commit `b4c3d77`, dados de `a483b34`): kit 589,90 (-4,04), colchão 179,99 (-20,00), ATENTU e Kappa iguais, refletor primeira leitura 40,20, maquininha em preço só-Pix |
+| 2026-11-09 22:08 | `4809d0b0-e6d9-40f7-a205-8cb30103d23a` | **produção atual** (commit `b6ca244`, dados de `c943c91`): oferta nova do jogo de panelas antiaderente 10 peças, R$ 170,90 no Pix (o anúncio só imprime Pix), capa do cartaz e ficha do anúncio preenchidas |
+| 2026-11-09 21:47 | `78a5098f-c733-4fc0-8d8f-fb77814831a9` | produção anterior (commit `b4c3d77`, dados de `a483b34`): kit 589,90 (-4,04), colchão 179,99 (-20,00), ATENTU e Kappa iguais, refletor primeira leitura 40,20, maquininha em preço só-Pix |
 | 2026-11-08 22:32 | `8967b757-8879-477e-b857-93cb82c26189` | produção anterior (commit `6571431`): preços conferidos pelo ML Scout, referência em 18:33 e vereditos corrigidos |
 | 2026-11-08 22:05 | `37df7766-93cb-48de-8cab-a789086b6064` | primeira conferência das 4 ofertas sem preço + 2ª leitura do kit (commit `31dac0a`) |
 | 2026-11-08 18:11 | `8c57b765-6087-47ca-a280-ee7b1c287404` | portal v1 na virada (commit `82daadf`) |
@@ -174,5 +183,6 @@ segundo roda em ~2 min. O site antigo continua no ar durante a espera.
 - [x] Refletor VERUNTO: primeira leitura em 09/11 (R$ 40,20), selo "Primeira conferência".
 - [ ] Contrato v1.1: o campo `cartao` aceita `null` (preço só-Pix). Os consumidores do JSON
       (rotina do ML Scout, Publisher) precisam gravar `pix` nesse caso, não copiar o Pix em `cartao`.
-- [ ] Ficha técnica vazia em 4 ofertas (colchão, carrinho, tênis, maquininha): `ficha: []` e veredito sem detalhe do produto — falta o que o vídeo afirma.
+- [ ] Ficha técnica vazia em 4 ofertas (colchão, carrinho, tênis, maquininha): `ficha: []` e veredito sem detalhe do produto — falta o que o vídeo afirma. A oferta de 09/11 (panelas) já entrou com `ficha` preenchida a partir do próprio anúncio; serve de modelo.
+- [ ] Rollback: o portal anterior à oferta nova é `78a5098f…` (09/11 21:47).
 - [ ] Validar Open Graph e rich results no domínio.
