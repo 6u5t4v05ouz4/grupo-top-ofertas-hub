@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import shutil
 import sys
 from datetime import datetime, timedelta
@@ -21,6 +22,7 @@ RAIZ = Path(__file__).resolve().parent
 SAIDA = RAIZ / "public"
 SITE = "https://grupotopofertas.trade"
 DADOS = RAIZ / "dados" / "ofertas.json"
+ANALYTICS = RAIZ / "dados" / "analytics.json"
 
 CATEGORIAS = {"ferramentas", "saude", "brinquedos", "calcados", "eletronicos", "iluminacao", "casa", "cozinha"}
 CANAIS = ["youtube", "instagram", "facebook", "tiktok", "telegram"]
@@ -337,6 +339,108 @@ def rodape(profundidade: int) -> str:
 </footer>"""
 
 
+# --------------------------------------------------------------------------
+# analytics
+# --------------------------------------------------------------------------
+# Nada é carregado sem ID. Os IDs ficam em dados/analytics.json; o build recusa
+# qualquer valor fora do formato conhecido, então não há como injetar script.
+
+ANALYTICS_PADRAO = {
+    "cloudflare_web_analytics": {"ativo": False, "token": ""},
+    "ga4": {"measurement_id": ""},
+    "meta_pixel": {"id": ""},
+    "tiktok_pixel": {"id": ""},
+    "clique_endpoint": "/api/clique",
+}
+ID_REGRAS = {
+    ("cloudflare_web_analytics", "token"): re.compile(r"^[0-9a-f]{32}$"),
+    ("ga4", "measurement_id"): re.compile(r"^G-[A-Z0-9]{4,20}$"),
+    ("meta_pixel", "id"): re.compile(r"^\d{10,20}$"),
+    ("tiktok_pixel", "id"): re.compile(r"^[A-Z0-9]{10,30}$"),
+}
+
+PIXEL_META = """<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;
+  n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','{id}');fbq('track','PageView');</script>"""
+
+PIXEL_TIKTOK = """<script>!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+  ttq.methods=['page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie'];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+  ttq.load=function(e,n){var r='https://analytics.tiktok.com/i18n/pixel/events.js';
+  ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;var o=d.createElement('script');o.type='text/javascript';
+  o.async=!0;o.src=r+'?sdkid='+e+'&lib='+t;var a=d.getElementsByTagName('script')[0];
+  a.parentNode.insertBefore(o,a)};
+  ttq.load('{id}');ttq.page();}(window,document,'ttq');</script>"""
+
+
+def carregar_analytics() -> dict:
+    config = {
+        "cloudflare_web_analytics": dict(ANALYTICS_PADRAO["cloudflare_web_analytics"]),
+        "ga4": dict(ANALYTICS_PADRAO["ga4"]),
+        "meta_pixel": dict(ANALYTICS_PADRAO["meta_pixel"]),
+        "tiktok_pixel": dict(ANALYTICS_PADRAO["tiktok_pixel"]),
+        "clique_endpoint": ANALYTICS_PADRAO["clique_endpoint"],
+    }
+    if not ANALYTICS.exists():
+        return config
+    try:
+        bruto = json.loads(ANALYTICS.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as erro:
+        raise SystemExit(f"dados/analytics.json inválido: {erro}")
+    if not isinstance(bruto, dict):
+        raise SystemExit("dados/analytics.json deve ser um objeto")
+    for (chave, campo), regra in ID_REGRAS.items():
+        bloco = bruto.get(chave) or {}
+        valor = str(bloco.get(campo) or "").strip()
+        if valor and not regra.match(valor):
+            raise SystemExit(f"dados/analytics.json: {chave}.{campo} fora do formato: {valor!r}")
+        config[chave][campo] = valor
+    config["cloudflare_web_analytics"]["ativo"] = bool(
+        (bruto.get("cloudflare_web_analytics") or {}).get("ativo"))
+    endpoint = str(bruto.get("clique_endpoint") or "/api/clique").strip()
+    if not re.match(r"^/[a-z0-9/_-]{1,40}$", endpoint):
+        raise SystemExit(f"dados/analytics.json: clique_endpoint fora do formato: {endpoint!r}")
+    config["clique_endpoint"] = endpoint
+    return config
+
+
+def analytics_tags(profundidade: int, absoluto: bool = False) -> str:
+    cf = ANALYTICS_CFG["cloudflare_web_analytics"]
+    ga4 = ANALYTICS_CFG["ga4"]["measurement_id"]
+    meta = ANALYTICS_CFG["meta_pixel"]["id"]
+    tiktok = ANALYTICS_CFG["tiktok_pixel"]["id"]
+    partes = []
+    if cf["ativo"] and cf["token"]:
+        partes.append(
+            "<!-- Cloudflare Web Analytics -->"
+            "<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' "
+            "data-cf-beacon='{\"token\": \"" + cf["token"] + "\"}'></script>"
+            "<!-- End Cloudflare Web Analytics -->")
+    if ga4:
+        partes.append(
+            f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga4}"></script>'
+            "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
+            f"gtag('js',new Date());gtag('config','{ga4}');</script>")
+    if meta:
+        partes.append(PIXEL_META.format(id=meta))
+    if tiktok:
+        partes.append(PIXEL_TIKTOK.format(id=tiktok))
+    src = "/assets/js/afiliado.js" if absoluto else rel(profundidade, "assets/js/afiliado.js")
+    partes.append(f'<script defer src="{src}"></script>')
+    return "\n".join(partes)
+
+
+def dados_afiliado(oferta: dict, posicao: str) -> str:
+    return (f'data-afiliado="mercadolivre" data-oferta="{esc(oferta["slug"])}" '
+            f'data-item="{esc(oferta["item_id"])}" data-posicao="{posicao}"')
+
+
+ANALYTICS_CFG = carregar_analytics()
+
+
 def head(titulo: str, descricao: str, rota: str, tema: str, capa: str | None = None,
          jsonld_bloco: str = "", og_tipo: str = "website") -> str:
     profundidade = rota.count("/")
@@ -361,6 +465,7 @@ def head(titulo: str, descricao: str, rota: str, tema: str, capa: str | None = N
 <meta property="og:image" content="{og}" />
 <meta name="twitter:card" content="summary_large_image" />
 {jsonld_bloco}
+{analytics_tags(profundidade)}
 </head>"""
 
 
@@ -405,7 +510,7 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
         <div class="painel__linha"><span>Última leitura</span><span>—</span></div>
         <div class="painel__linha"><span>Publicado em</span><span>{esc(data(oferta["postado_em"]))}</span></div>
         <div class="painel__linha"><span>Vídeo</span><span>{len(oferta["videos"])} canais</span></div>
-        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored">
+        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha-sem-preco")}>
           Abrir anúncio no Mercado Livre
         </a>
         <p class="aviso-afiliado">Link de afiliado: podemos receber comissão pela compra, sem custo adicional para você.
@@ -444,7 +549,7 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
           Lido no anúncio em <strong>{esc(data_hora(preco["price_checked_at"]))}</strong>
           (horário de Brasília). Preço e estoque podem mudar depois disso.
         </p>
-        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored">
+        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha")}>
           Ver oferta no Mercado Livre
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
@@ -582,7 +687,7 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
         <ul class="selos">{selos_html}</ul>
         <p class="conferido">{conferido}</p>
         <div class="acoes">
-          <a class="btn btn--primario" href="{esc(destaque["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored">
+          <a class="btn btn--primario" href="{esc(destaque["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(destaque, "destaque-home")}>
             Ver oferta no Mercado Livre
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
@@ -1099,6 +1204,7 @@ def pagina_404() -> str:
 <meta name="robots" content="noindex" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/assets/css/arquivo.css" />
+{analytics_tags(0, absoluto=True)}
 </head>
 <body>
 <main id="conteudo">
@@ -1163,7 +1269,7 @@ def main() -> None:
     SAIDA.mkdir(parents=True)
 
     # só o que o site usa: capas próprias, identidade e CSS. Nenhuma foto de anúncio entra no build.
-    for pasta in ("capas", "css", "img"):
+    for pasta in ("capas", "css", "img", "js"):
         shutil.copytree(RAIZ / "assets" / pasta, SAIDA / "assets" / pasta)
     shutil.copyfile(RAIZ / "assets" / "img" / "logo-horizontal.svg", SAIDA / "favicon.svg")
 
@@ -1176,7 +1282,7 @@ def main() -> None:
     escrever("canais/index.html", pagina_canais(referencia))
     escrever("404.html", pagina_404())
     escrever("sitemap.xml", gerar_sitemap(ofertas, referencia))
-    escrever("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+    escrever("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {SITE}/sitemap.xml\n")
     escrever("_headers", "/assets/*\n  Cache-Control: public, max-age=604800\n")
     escrever("_redirects",
              "/index.html / 301\n"
@@ -1188,8 +1294,13 @@ def main() -> None:
     paginas = len(list(SAIDA.rglob("*.html")))
     tamanho = sum(f.stat().st_size for f in SAIDA.rglob("*") if f.is_file())
     conferidas = sum(1 for o in ofertas if o["_conferida_24h"])
+    cf = ANALYTICS_CFG["cloudflare_web_analytics"]
+    analytics = [f"Cloudflare {'on' if cf['ativo'] and cf['token'] else 'off'}"]
+    for chave, rotulo in (("ga4", "GA4"), ("meta_pixel", "Meta"), ("tiktok_pixel", "TikTok")):
+        configurado = any(ANALYTICS_CFG[chave][campo] for campo in ANALYTICS_CFG[chave])
+        analytics.append(f"{rotulo} {'on' if configurado else 'off'}")
     print(f"build ok · {paginas} páginas · {len(ofertas)} ofertas · {conferidas} conferida(s) em 24 h · "
-          f"{tamanho / 1024:.0f} KB · referência {data_hora(referencia)}")
+          f"{tamanho / 1024:.0f} KB · referência {data_hora(referencia)} · analytics: " + ", ".join(analytics))
     for o in ofertas:
         print(f"  {o['_url']:45} {o['_estado']['status']:16} {money(valor_vista(o['_preco'])) if o['_preco'] else 'sem preço'}")
 

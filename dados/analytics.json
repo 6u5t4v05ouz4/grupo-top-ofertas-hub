@@ -1,0 +1,17 @@
+{
+  "_leia_me": "IDs de analytics do portal. Deixe vazio o que nao existe: nada e carregado sem ID. cloudflare_web_analytics.token pode ficar sempre ligado.",
+  "cloudflare_web_analytics": {
+    "ativo": true,
+    "token": "cc7d9233258744cc82ca55faa2fbb8cf"
+  },
+  "ga4": {
+    "measurement_id": ""
+  },
+  "meta_pixel": {
+    "id": ""
+  },
+  "tiktok_pixel": {
+    "id": ""
+  },
+  "clique_endpoint": "/api/clique"
+}

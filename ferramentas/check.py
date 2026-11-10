@@ -262,18 +262,59 @@ def main() -> None:
     except ET.ParseError as e:
         falhas.append(f"sitemap.xml inválido: {e}")
 
-    # assets: só capas próprias, css e img
+    # assets: só capas próprias, css, img e js
     for pasta in (PUB / "assets").iterdir():
-        if pasta.name not in ("capas", "css", "img"):
+        if pasta.name not in ("capas", "css", "img", "js"):
             falhas.append(f"assets com pasta inesperada: {pasta.name}")
     capas = list((PUB / "assets" / "capas").glob("*.jpg"))
     if len(capas) < 6:
         falhas.append(f"menos capas que ofertas: {len(capas)}")
 
+    # analytics: nada de terceiro sem ID; clique em afiliado sempre marcado
+    cfg_analytics = json.loads((RAIZ / "dados" / "analytics.json").read_text(encoding="utf-8")) \
+        if (RAIZ / "dados" / "analytics.json").exists() else {}
+    beacon = ((cfg_analytics.get("cloudflare_web_analytics") or {}).get("token") or "")
+    beacon_ativo = bool((cfg_analytics.get("cloudflare_web_analytics") or {}).get("ativo")) and bool(beacon)
+    ga4 = ((cfg_analytics.get("ga4") or {}).get("measurement_id") or "")
+    meta = ((cfg_analytics.get("meta_pixel") or {}).get("id") or "")
+    tiktok = ((cfg_analytics.get("tiktok_pixel") or {}).get("id") or "")
+    if not (PUB / "assets" / "js" / "afiliado.js").exists():
+        falhas.append("assets/js/afiliado.js ausente: clique de afiliado não seria medido")
+    if not (RAIZ / "functions" / "api" / "clique.js").exists():
+        falhas.append("functions/api/clique.js ausente: o clique não teria destino")
+    ctas = 0
+    for html in htmls:
+        texto = html.read_text(encoding="utf-8")
+        if beacon_ativo and beacon not in texto:
+            falhas.append(f"{html.relative_to(PUB)}: sem beacon do Cloudflare Web Analytics")
+        if not beacon_ativo and "cloudflareinsights.com" in texto:
+            falhas.append(f"{html.relative_to(PUB)}: beacon sem token configurado")
+        if ga4 and f"gtag/js?id={ga4}" not in texto:
+            falhas.append(f"{html.relative_to(PUB)}: GA4 configurado e ausente")
+        if not ga4 and ("googletagmanager.com" in texto or "gtag('config'" in texto):
+            falhas.append(f"{html.relative_to(PUB)}: GA4 sem measurement_id")
+        if not meta and ("connect.facebook.net" in texto or "fbq('init'" in texto):
+            falhas.append(f"{html.relative_to(PUB)}: Meta Pixel sem id")
+        if not tiktok and "analytics.tiktok.com" in texto:
+            falhas.append(f"{html.relative_to(PUB)}: TikTok Pixel sem id")
+        for tag in re.findall(r"<a [^>]*rel=\"[^\"]*sponsored[^\"]*\"[^>]*>", texto):
+            ctas += 1
+            for atributo in ("data-afiliado=", "data-oferta=", "data-item=", "data-posicao="):
+                if atributo not in tag:
+                    falhas.append(f"{html.relative_to(PUB)}: link de afiliado sem {atributo[:-1]}")
+            if not re.search(r'data-item="ML[A-Z]\d{6,}"', tag):
+                falhas.append(f"{html.relative_to(PUB)}: link de afiliado com item_id inválido")
+    if ctas == 0:
+        falhas.append("nenhum link de afiliado marcado: conversão não seria medida")
+    ok.append(f"analytics: {ctas} CTAs marcados · beacon {'on' if beacon_ativo else 'off'} · "
+              f"GA4 {'on' if ga4 else 'off'} · Meta {'on' if meta else 'off'} · TikTok {'on' if tiktok else 'off'}")
+
     # robots
     robots = (PUB / "robots.txt").read_text(encoding="utf-8")
     if "Sitemap: https://grupotopofertas.trade/sitemap.xml" not in robots:
         falhas.append("robots.txt sem sitemap")
+    if "Disallow: /api/" not in robots:
+        falhas.append("robots.txt sem Disallow: /api/ (endpoint de clique é POST, não página)")
 
     # tamanho
     tamanho = sum(f.stat().st_size for f in PUB.rglob("*") if f.is_file())
