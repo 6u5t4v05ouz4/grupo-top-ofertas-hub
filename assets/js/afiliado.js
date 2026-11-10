@@ -19,13 +19,8 @@
       if (window.gtag) window.gtag("event", "affiliate_click", d);
       if (window.fbq) window.fbq("trackCustom", "AffiliateClick", { item_id: d.item_id });
       if (window.ttq) window.ttq.track("ClickButton", { content_id: d.item_id });
-      var corpo = JSON.stringify(d);
-      var tipo = "text/plain;charset=UTF-8";
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon("/api/clique", new Blob([corpo], { type: tipo }));
-      } else {
-        fetch("/api/clique", { method: "POST", body: corpo, keepalive: true, headers: { "content-type": tipo } });
-      }
+      // O clique e contado no 302 de /ir/<slug>/ (analytics da zona).
+      // Aqui so disparam as ferramentas que tiverem ID configurado.
     } catch (e) {}
   }
 

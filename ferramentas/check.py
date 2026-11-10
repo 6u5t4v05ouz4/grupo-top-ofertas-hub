@@ -21,6 +21,14 @@ falhas: list[str] = []
 ok: list[str] = []
 
 
+ROTAS_SAIDA: set[str] = set()
+
+
+def rota_de_saida(href: str) -> bool:
+    """Link interno que existe como 302 em _redirects (saída para o anúncio)."""
+    return href.split("?")[0].split("#")[0] in ROTAS_SAIDA
+
+
 class Pagina(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -83,6 +91,12 @@ def main() -> None:
         print("public/ não existe — rode python build.py antes", file=sys.stderr)
         raise SystemExit(1)
 
+    redirecionamentos = (PUB / "_redirects").read_text(encoding="utf-8") if (PUB / "_redirects").exists() else ""
+    for linha in redirecionamentos.splitlines():
+        partes = linha.split()
+        if len(partes) >= 3 and partes[0].startswith("/"):
+            ROTAS_SAIDA.add(partes[0])
+
     htmls = sorted(PUB.rglob("*.html"))
     if len(htmls) < 10:
         falhas.append(f"poucas páginas geradas: {len(htmls)}")
@@ -106,7 +120,7 @@ def main() -> None:
             alvo = (html.parent / unquote(href.split("#")[0].split("?")[0])).resolve()
             if href.startswith("/"):
                 alvo = (PUB / href.lstrip("/")).resolve()
-            if not existe(alvo):
+            if not existe(alvo) and not rota_de_saida(href):
                 falhas.append(f"{rel}: link quebrado -> {href}")
         for bloco in p.jsonld:
             try:
@@ -280,8 +294,9 @@ def main() -> None:
     tiktok = ((cfg_analytics.get("tiktok_pixel") or {}).get("id") or "")
     if not (PUB / "assets" / "js" / "afiliado.js").exists():
         falhas.append("assets/js/afiliado.js ausente: clique de afiliado não seria medido")
-    if not (RAIZ / "functions" / "api" / "clique.js").exists():
-        falhas.append("functions/api/clique.js ausente: o clique não teria destino")
+    redirecionamentos = (PUB / "_redirects").read_text(encoding="utf-8") if (PUB / "_redirects").exists() else ""
+    if "/ir/* / 302" not in redirecionamentos:
+        falhas.append("_redirects sem fallback /ir/*")
     ctas = 0
     for html in htmls:
         texto = html.read_text(encoding="utf-8")
@@ -302,8 +317,16 @@ def main() -> None:
             for atributo in ("data-afiliado=", "data-oferta=", "data-item=", "data-posicao="):
                 if atributo not in tag:
                     falhas.append(f"{html.relative_to(PUB)}: link de afiliado sem {atributo[:-1]}")
-            if not re.search(r'data-item="ML[A-Z]\d{6,}"', tag):
+            m = re.search(r'data-item="(ML[A-Z]\d{6,})"', tag)
+            if not m:
                 falhas.append(f"{html.relative_to(PUB)}: link de afiliado com item_id inválido")
+            else:
+                item = m.group(1)
+                destino = re.search(r'/ir/([a-z0-9-]+)/', tag)
+                if not destino:
+                    falhas.append(f"{html.relative_to(PUB)}: CTA de {item} fora de /ir/<slug>/ (clique não seria contado)")
+                elif f"/ir/{destino.group(1)}/ https://" not in redirecionamentos:
+                    falhas.append(f"_redirects sem salto /ir/{destino.group(1)}/")
     if ctas == 0:
         falhas.append("nenhum link de afiliado marcado: conversão não seria medida")
     ok.append(f"analytics: {ctas} CTAs marcados · beacon {'on' if beacon_ativo else 'off'} · "
@@ -313,8 +336,19 @@ def main() -> None:
     robots = (PUB / "robots.txt").read_text(encoding="utf-8")
     if "Sitemap: https://grupotopofertas.trade/sitemap.xml" not in robots:
         falhas.append("robots.txt sem sitemap")
-    if "Disallow: /api/" not in robots:
-        falhas.append("robots.txt sem Disallow: /api/ (endpoint de clique é POST, não página)")
+    if "Disallow: /ir/" not in robots:
+        falhas.append("robots.txt sem Disallow: /ir/ (rota de saída não é página)")
+
+    # cada salto precisa levar ao anúncio certo, e nunca a outro host
+    dados_ofertas = json.loads((RAIZ / "dados" / "ofertas.json").read_text(encoding="utf-8"))
+    ofertas_json = dados_ofertas["ofertas"] if isinstance(dados_ofertas, dict) else dados_ofertas
+    for o in ofertas_json:
+        esperado = f"/ir/{o['slug']}/ {o['link_afiliado']} 302"
+        if esperado not in redirecionamentos:
+            falhas.append(f"_redirects: salto ausente ou divergente para {o['slug']}")
+        if not re.match(r"^https://(meli\.la|www\.mercadolivre\.com\.br|[a-z0-9-]+\.mercadolivre\.com\.br)/", o["link_afiliado"]):
+            falhas.append(f"{o['slug']}: link_afiliado fora do Mercado Livre: {o['link_afiliado']}")
+    ok.append(f"_redirects: {len(ofertas_json)} saltos /ir/ conferidos")
 
     # tamanho
     tamanho = sum(f.stat().st_size for f in PUB.rglob("*") if f.is_file())

@@ -510,7 +510,7 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
         <div class="painel__linha"><span>Última leitura</span><span>—</span></div>
         <div class="painel__linha"><span>Publicado em</span><span>{esc(data(oferta["postado_em"]))}</span></div>
         <div class="painel__linha"><span>Vídeo</span><span>{len(oferta["videos"])} canais</span></div>
-        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha-sem-preco")}>
+        <a class="btn btn--primario" href="/ir/{esc(oferta["slug"])}/" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha-sem-preco")}>
           Abrir anúncio no Mercado Livre
         </a>
         <p class="aviso-afiliado">Link de afiliado: podemos receber comissão pela compra, sem custo adicional para você.
@@ -549,7 +549,7 @@ def painel_preco(oferta: dict, profundidade: int) -> str:
           Lido no anúncio em <strong>{esc(data_hora(preco["price_checked_at"]))}</strong>
           (horário de Brasília). Preço e estoque podem mudar depois disso.
         </p>
-        <a class="btn btn--primario" href="{esc(oferta["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha")}>
+        <a class="btn btn--primario" href="/ir/{esc(oferta["slug"])}/" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(oferta, "ficha")}>
           Ver oferta no Mercado Livre
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
@@ -687,7 +687,7 @@ def pagina_home(ofertas: list[dict], referencia: str) -> str:
         <ul class="selos">{selos_html}</ul>
         <p class="conferido">{conferido}</p>
         <div class="acoes">
-          <a class="btn btn--primario" href="{esc(destaque["link_afiliado"])}" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(destaque, "destaque-home")}>
+          <a class="btn btn--primario" href="/ir/{esc(destaque["slug"])}/" target="_blank" rel="noopener noreferrer sponsored" {dados_afiliado(destaque, "destaque-home")}>
             Ver oferta no Mercado Livre
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
@@ -1282,13 +1282,20 @@ def main() -> None:
     escrever("canais/index.html", pagina_canais(referencia))
     escrever("404.html", pagina_404())
     escrever("sitemap.xml", gerar_sitemap(ofertas, referencia))
-    escrever("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {SITE}/sitemap.xml\n")
+    escrever("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /ir/\n\nSitemap: {SITE}/sitemap.xml\n")
     escrever("_headers", "/assets/*\n  Cache-Control: public, max-age=604800\n")
-    escrever("_redirects",
-             "/index.html / 301\n"
-             "/offers.json / 301\n"
-             "/app.js / 301\n"
-             "/styles.css / 301\n")
+    # Cada CTA passa por /ir/<slug>/ (302) antes do anuncio: o clique fica
+    # registrado nos analytics da zona, sem depender de JS nem de storage.
+    linhas = [
+        "/index.html / 301",
+        "/offers.json / 301",
+        "/app.js / 301",
+        "/styles.css / 301",
+    ]
+    for o in ofertas:
+        linhas.append(f"/ir/{o['slug']}/ {o['link_afiliado']} 302")
+    linhas.append("/ir/* / 302")
+    escrever("_redirects", "\n".join(linhas) + "\n")
     escrever(".nojekyll", "")
 
     paginas = len(list(SAIDA.rglob("*.html")))
