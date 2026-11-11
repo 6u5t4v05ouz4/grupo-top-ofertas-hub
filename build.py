@@ -924,7 +924,7 @@ def pagina_oferta(oferta: dict, ofertas: list[dict], referencia: str) -> str:
           <time datetime="{esc(p["em"])}">{esc(data(p["em"]))} · {esc(hora(p["em"]))}</time>
           <span class="valor">{money(p["cartao"] if p.get("cartao") is not None else p.get("pix"))}
           {'<small> no Pix</small>' if p.get('cartao') is None else ''}</span>
-          <span class="nota">{'Primeira conferência — preço que entrou no vídeo.' if i == 0 else 'Reconferência.'}
+          <span class="nota">{'Reconferência.' if i else ('Primeira conferência.' if (p.get('pix') is not None and p.get('cartao') is not None) else 'Primeira conferência — preço que entrou no vídeo.')}
           {f' No Pix, {money(p["pix"])}.' if p.get('pix') and p.get('cartao') is not None else ''}</span>
         </li>"""
             for i, p in enumerate(oferta["historico_preco"])

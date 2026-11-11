@@ -4,6 +4,65 @@
   "atualizado_em": "2026-11-09T19:02:00-03:00",
   "ofertas": [
     {
+      "slug": "auxiliar-de-partida-compressor-4-em-1-midiafone",
+      "publish": true,
+      "item_id": "MLB4860621979",
+      "catalog_id": "MLB74933617",
+      "titulo": "Auxiliar de Partida + Compressor de Ar 4 em 1 MidiaFone",
+      "titulo_curto": "Auxiliar de Partida 4 em 1",
+      "categoria": {
+        "slug": "ferramentas",
+        "rotulo": "Ferramentas"
+      },
+      "marca": "MidiaFone",
+      "veredito": "Aparelho 4 em 1 para carro: segundo o vídeo, dá partida com 600 A, calibra pneu até 150 PSI, carrega celular como power bank e acende lanterna LED — e o cabo de recarga não vem incluso.",
+      "capa": "assets/capas/auxiliar-partida-compressor-4-em-1.jpg",
+      "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
+      "preco": {
+        "cartao": 159.99,
+        "pix": 143.99,
+        "parcelas": null,
+        "de": 390.0,
+        "desconto_pct": 63,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-11T19:01:00-03:00",
+        "conferido_em": "2026-11-11T19:01:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-11T08:50:00-03:00",
+      "atualizado_em": "2026-11-11T19:01:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/nMgqwgAPGeg",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfmarLYoRJx/",
+        "facebook": "https://www.facebook.com/reel/2212385306361397",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7706882909143174421"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/1dQ66KR",
+      "ficha": [
+        "4 funções em 1: auxiliar de partida, calibrador digital de pneus, power bank e lanterna LED",
+        "Calibrador digital até 150 PSI; bivolt 110/220 V (dados do anúncio)",
+        "Saída USB-C para recarregar o celular",
+        "600 A de partida e bateria de 12.000 mAh: números informados no vídeo",
+        "Para carros, motos, bicicletas, bolas e outros infláveis",
+        "Não acompanha cabo de recarga"
+      ],
+      "vendedor": "Loja oficial MidiaFone",
+      "avaliacao": {
+        "nota": 4.8,
+        "opinioes": 3372
+      },
+      "historico_preco": [
+        {
+          "em": "2026-11-11T19:01:00-03:00",
+          "cartao": 159.99,
+          "pix": 143.99
+        }
+      ],
+      "conferido_por": "Dev Fullstack"
+    },
+    {
       "slug": "jogo-panelas-antiaderente-7-camadas-10-pecas",
       "publish": true,
       "item_id": "MLB80508625",
@@ -20,14 +79,14 @@
       "capa_alt": "Capa do vídeo do jogo de panelas antiaderente de 10 peças, com o preço de R$ 170,90 no Pix",
       "preco": {
         "cartao": null,
-        "pix": 170.9,
+        "pix": 174.71,
         "parcelas": null,
         "de": 264.9,
-        "desconto_pct": 35,
+        "desconto_pct": 34,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T19:02:00-03:00",
-        "conferido_em": "2026-11-09T19:02:00-03:00"
+        "price_checked_at": "2026-11-11T18:32:18-03:00",
+        "conferido_em": "2026-11-11T18:32:18-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -60,9 +119,13 @@
         {
           "em": "2026-11-09T19:02:00-03:00",
           "pix": 170.9
+        },
+        {
+          "em": "2026-11-11T18:32:18-03:00",
+          "pix": 174.71
         }
       ],
-      "conferido_por": "ML Scout e Dev Fullstack",
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true,
       "capa_preco": 170.9
     },
@@ -82,19 +145,19 @@
       "capa": "assets/capas/kit-3-em-1-the-black-tools.jpg",
       "capa_alt": "Capa do vídeo do kit 3 em 1 The Black Tools, com a maleta aberta e o preço de R$ 593,94",
       "preco": {
-        "cartao": 589.9,
+        "cartao": 574.9,
         "pix": null,
         "parcelas": {
           "quantidade": 10,
-          "valor": 58.99,
+          "valor": 57.49,
           "sem_juros": true
         },
         "de": 1079.9,
-        "desconto_pct": 45,
+        "desconto_pct": 46,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T18:36:22-03:00",
-        "conferido_em": "2026-11-09T18:36:22-03:00"
+        "price_checked_at": "2026-11-11T18:32:18-03:00",
+        "conferido_em": "2026-11-11T18:32:18-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -133,6 +196,10 @@
         {
           "em": "2026-11-09T18:36:22-03:00",
           "cartao": 589.9
+        },
+        {
+          "em": "2026-11-11T18:32:18-03:00",
+          "cartao": 574.9
         }
       ],
       "conferido_por": "ML Scout",
@@ -155,15 +222,15 @@
       "capa": "assets/capas/colchao-dellamed-air-plus.jpg",
       "capa_alt": "Capa do vídeo do colchão antiescaras Dellamed Air Plus",
       "preco": {
-        "cartao": 179.99,
-        "pix": 170.99,
+        "cartao": 181.0,
+        "pix": 171.95,
         "parcelas": null,
         "de": 399.0,
-        "desconto_pct": 57,
+        "desconto_pct": 56,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T18:36:22-03:00",
-        "conferido_em": "2026-11-09T18:36:22-03:00"
+        "price_checked_at": "2026-11-11T18:32:18-03:00",
+        "conferido_em": "2026-11-11T18:32:18-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T15:20:00-03:00",
@@ -183,6 +250,11 @@
         {
           "em": "2026-11-09T18:36:22-03:00",
           "cartao": 179.99
+        },
+        {
+          "em": "2026-11-11T18:32:18-03:00",
+          "cartao": 181.0,
+          "pix": 171.95
         }
       ],
       "conferido_por": "ML Scout"
@@ -210,8 +282,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T18:36:22-03:00",
-        "conferido_em": "2026-11-09T18:36:22-03:00"
+        "price_checked_at": "2026-11-11T18:32:18-03:00",
+        "conferido_em": "2026-11-11T18:32:18-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T18:19:00-03:00",
@@ -231,6 +303,10 @@
         },
         {
           "em": "2026-11-09T18:36:22-03:00",
+          "cartao": 74.9
+        },
+        {
+          "em": "2026-11-11T18:32:18-03:00",
           "cartao": 74.9
         }
       ],
@@ -254,15 +330,15 @@
       "capa": "assets/capas/tenis-kappa-pulse-supra.jpg",
       "capa_alt": "Capa do vídeo do tênis Kappa Pulse Supra",
       "preco": {
-        "cartao": 134.67,
+        "cartao": 129.99,
         "pix": null,
         "parcelas": null,
         "de": 259.99,
-        "desconto_pct": 48,
+        "desconto_pct": 50,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T18:36:22-03:00",
-        "conferido_em": "2026-11-09T18:36:22-03:00"
+        "price_checked_at": "2026-11-11T18:32:18-03:00",
+        "conferido_em": "2026-11-11T18:32:18-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-05T16:05:00-03:00",
@@ -282,6 +358,10 @@
         {
           "em": "2026-11-09T18:36:22-03:00",
           "cartao": 134.67
+        },
+        {
+          "em": "2026-11-11T18:32:18-03:00",
+          "cartao": 129.99
         }
       ],
       "conferido_por": "ML Scout",
