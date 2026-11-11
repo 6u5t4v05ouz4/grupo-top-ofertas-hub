@@ -186,3 +186,26 @@ segundo roda em ~2 min. O site antigo continua no ar durante a espera.
 - [ ] Ficha técnica vazia em 4 ofertas (colchão, carrinho, tênis, maquininha): `ficha: []` e veredito sem detalhe do produto — falta o que o vídeo afirma. A oferta de 09/11 (panelas) já entrou com `ficha` preenchida a partir do próprio anúncio; serve de modelo.
 - [ ] Rollback: o portal anterior à oferta nova é `78a5098f…` (09/11 21:47).
 - [ ] Validar Open Graph e rich results no domínio.
+
+### Rodada diária de 11/11/2026 (oferta nova + preços do dia)
+
+- Oferta nova: **MLB4860621979** (auxiliar de partida + compressor 4 em 1 MidiaFone), capa do vídeo v2,
+  preço relido por mim às **19:01 BRT**: R$ 143,99 no Pix (63% OFF de R$ 390,00) e R$ 159,99 em outros
+  meios. Por isso `cartao: 159.99` e `pix: 143.99`; `capa_preco` ficou **sem declaração** — o cartaz
+  estampa exatamente o Pix de hoje, então não há preço velho a explicar, e declarar o cartaz faria a
+  home dizer que "vale o preço conferido acima" (o de cartão), o que inverteria a oferta do vídeo.
+- Preços que mudaram na reconferência do ML Scout (11/11 18:32): panelas 170,90 → **174,71** (subiu
+  R$ 3,81), kit 3 em 1 589,90 → **574,90**, colchão 179,99 → **181,00** (Pix 171,95), tênis 134,67 →
+  **129,99**. Carrinho ficou igual. Maquininha e refletor seguem com leitura de 09/11.
+- `build.py`: a linha do tempo do preço só diz "preço que entrou no vídeo" quando a oferta tem **um**
+  valor à vista; quando tem cartão e Pix ela diz "Primeira conferência." e lista o Pix ao lado — antes
+  afirmava que o valor de cartão era o do vídeo.
+- Repositório: a pasta local havia perdido o `.git` e cinco arquivos versionados (`.gitignore`,
+  `README.md`, `app.js`, `index.html`, `offers.json`, `styles.css`, `docs/`). Restaurado a partir do
+  clone do GitHub (histórico intacto, nada reescrito) e só então aplicadas as mudanças de dados.
+- Deployment `687ecd4b-d7b0-4645-9dd1-cefc65722615` (conteúdo em `e04d835`, gatilho `c993ae4`); a fila travou de
+  novo em `queued` e o enfileirado foi apagado antes do commit de gatilho, como nas rodadas anteriores.
+  Produção anterior: `de1b69df-3127-4d64-86c1-67999772aa93`.
+- Verificado no domínio: `/`, `/ofertas/`, a ficha nova e as 7 antigas, `/canais/`, `/como-conferimos/`
+  em 200; HTML servido byte-idêntico ao build local; `/ir/<slug>/` em 302 para o `meli.la`; sitemap com
+  13 URLs incluindo a nova; 404 real.
