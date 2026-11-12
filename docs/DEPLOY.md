@@ -209,3 +209,23 @@ segundo roda em ~2 min. O site antigo continua no ar durante a espera.
 - Verificado no domínio: `/`, `/ofertas/`, a ficha nova e as 7 antigas, `/canais/`, `/como-conferimos/`
   em 200; HTML servido byte-idêntico ao build local; `/ir/<slug>/` em 302 para o `meli.la`; sitemap com
   13 URLs incluindo a nova; 404 real.
+
+### Rodada diária de 12/11/2026 (oferta nova + preços do dia)
+
+- Oferta nova: **MLB5155902053** (lixeira automática 16 L Tempo Real), capa do vídeo de 12/11 (md5
+  `9293b1bd…`, confere com o pacote do Publisher), postada 12:49 BRT nos 4 canais.
+- Preço relido por mim às **19:00 BRT** em `meli.la/1b6NCu3`: **R$ 59,37** (de R$ 159,99, 62% OFF),
+  vendedor ISRAELCOMERCIOLTDA. O anúncio não separa Pix nem parcela, então o valor entrou em `cartao`
+  com `pix: null` (o site mostra o preço sem o selo "no Pix"), e `capa_preco: 59.37` porque o cartaz
+  estampa esse mesmo valor. A oferta BGX (R$ 61,91 / 76%) não foi usada.
+- Preços do dia (ML Scout, 18:31 BRT): kit 3 em 1 574,90 → **639,90** (Pix 588,71; a página voltou ao
+  preço cheio de cartão), colchão 181,00 → **179,99** (Pix 170,99), tênis 129,99. Carrinho, panelas e
+  auxiliar sem mudança; maquininha e refletor seguem com leitura de 09/11. O auxiliar entrou só com Pix
+  porque o anúncio não exibiu mais o valor "em outros meios".
+- Deployment `1419847a-1fcf-429c-82d1-50d76e49c9cf` (gatilho `b347cfa`, conteúdo `de7dc0d`). A fila
+  travou em `queued` de novo: enfileirado apagado e commit vazio, como nas rodadas anteriores.
+  Produção anterior: `687ecd4b-d7b0-4645-9dd1-cefc65722615`.
+- Verificado no domínio: `/`, `/ofertas/`, a ficha nova e as 8 antigas, `/canais/`, `/como-conferimos/`
+  em 200; ficha nova mostra R$ 59,37 e a referência 12/11 às 19:00; kit mostra 639,90 / 588,71;
+  sitemap com 14 URLs incluindo a nova; `/ir/lixeira-automatica-16l-tempo-real/` em 302 para o
+  `meli.la`; 404 real.
