@@ -1,8 +1,63 @@
 {
   "schema_version": 1,
-  "referencia": "2026-11-09T19:02:00-03:00",
-  "atualizado_em": "2026-11-09T19:02:00-03:00",
+  "referencia": "2026-11-12T19:00:00-03:00",
+  "atualizado_em": "2026-11-12T19:00:00-03:00",
   "ofertas": [
+    {
+      "slug": "lixeira-automatica-16l-tempo-real",
+      "publish": true,
+      "item_id": "MLB5155902053",
+      "catalog_id": "MLB51866698",
+      "titulo": "Lixeira Automática Inteligente 16 L Tempo Real",
+      "titulo_curto": "Lixeira 16 L Tempo Real",
+      "categoria": {
+        "slug": "casa",
+        "rotulo": "Casa"
+      },
+      "marca": "Tempo Real",
+      "veredito": "Lixeira de 16 litros que, segundo o vídeo, abre a tampa sozinha com sensor de até 30 cm, também por toque ou botão, fecha sozinha e recarrega por USB — o vídeo não mostra a tampa abrindo.",
+      "capa": "assets/capas/lixeira-automatica-16l-tempo-real.jpg",
+      "capa_alt": "Capa do vídeo da lixeira automática de 16 litros Tempo Real, com o preço de R$ 59,37",
+      "preco": {
+        "cartao": 59.37,
+        "pix": null,
+        "parcelas": null,
+        "de": 159.99,
+        "desconto_pct": 62,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-12T19:00:00-03:00",
+        "conferido_em": "2026-11-12T19:00:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-12T12:49:00-03:00",
+      "atualizado_em": "2026-11-12T19:00:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/hoe55CysP1s",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/Dfpa1vKIBE5/",
+        "facebook": "https://www.facebook.com/reel/1403252424922233",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7707314996807732500"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/1b6NCu3",
+      "ficha": [
+        "16 litros; 24 × 22 × 35 cm e 1,4 kg (dados do anúncio)",
+        "Tampa em ABS e corpo em PP, na cor branca; sem balde interno",
+        "Sensor infravermelho abre a tampa a até 30 cm — número informado no vídeo",
+        "Três formas de abrir: sensor, toque/vibração e botão OPEN; a tampa fecha sozinha",
+        "Bateria de lítio recarregável por USB 5 V, com cabo USB incluso"
+      ],
+      "vendedor": "ISRAELCOMERCIOLTDA",
+      "historico_preco": [
+        {
+          "em": "2026-11-12T19:00:00-03:00",
+          "cartao": 59.37
+        }
+      ],
+      "conferido_por": "Dev Fullstack",
+      "capa_tem_preco": true,
+      "capa_preco": 59.37
+    },
     {
       "slug": "auxiliar-de-partida-compressor-4-em-1-midiafone",
       "publish": true,
@@ -19,15 +74,15 @@
       "capa": "assets/capas/auxiliar-partida-compressor-4-em-1.jpg",
       "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
       "preco": {
-        "cartao": 159.99,
+        "cartao": null,
         "pix": 143.99,
         "parcelas": null,
         "de": 390.0,
         "desconto_pct": 63,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-11T19:01:00-03:00",
-        "conferido_em": "2026-11-11T19:01:00-03:00"
+        "price_checked_at": "2026-11-12T18:31:00-03:00",
+        "conferido_em": "2026-11-12T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-11T08:50:00-03:00",
@@ -58,9 +113,13 @@
           "em": "2026-11-11T19:01:00-03:00",
           "cartao": 159.99,
           "pix": 143.99
+        },
+        {
+          "em": "2026-11-12T18:31:00-03:00",
+          "pix": 143.99
         }
       ],
-      "conferido_por": "Dev Fullstack"
+      "conferido_por": "ML Scout"
     },
     {
       "slug": "jogo-panelas-antiaderente-7-camadas-10-pecas",
@@ -85,8 +144,8 @@
         "desconto_pct": 34,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-11T18:32:18-03:00",
-        "conferido_em": "2026-11-11T18:32:18-03:00"
+        "price_checked_at": "2026-11-12T18:31:00-03:00",
+        "conferido_em": "2026-11-12T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -123,6 +182,10 @@
         {
           "em": "2026-11-11T18:32:18-03:00",
           "pix": 174.71
+        },
+        {
+          "em": "2026-11-12T18:31:00-03:00",
+          "pix": 174.71
         }
       ],
       "conferido_por": "ML Scout",
@@ -145,19 +208,19 @@
       "capa": "assets/capas/kit-3-em-1-the-black-tools.jpg",
       "capa_alt": "Capa do vídeo do kit 3 em 1 The Black Tools, com a maleta aberta e o preço de R$ 593,94",
       "preco": {
-        "cartao": 574.9,
-        "pix": null,
+        "cartao": 639.9,
+        "pix": 588.71,
         "parcelas": {
           "quantidade": 10,
-          "valor": 57.49,
+          "valor": 63.99,
           "sem_juros": true
         },
         "de": 1079.9,
-        "desconto_pct": 46,
+        "desconto_pct": 45,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-11T18:32:18-03:00",
-        "conferido_em": "2026-11-11T18:32:18-03:00"
+        "price_checked_at": "2026-11-12T18:31:00-03:00",
+        "conferido_em": "2026-11-12T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -200,6 +263,11 @@
         {
           "em": "2026-11-11T18:32:18-03:00",
           "cartao": 574.9
+        },
+        {
+          "em": "2026-11-12T18:31:00-03:00",
+          "cartao": 639.9,
+          "pix": 588.71
         }
       ],
       "conferido_por": "ML Scout",
@@ -222,15 +290,15 @@
       "capa": "assets/capas/colchao-dellamed-air-plus.jpg",
       "capa_alt": "Capa do vídeo do colchão antiescaras Dellamed Air Plus",
       "preco": {
-        "cartao": 181.0,
-        "pix": 171.95,
+        "cartao": 179.99,
+        "pix": 170.99,
         "parcelas": null,
         "de": 399.0,
-        "desconto_pct": 56,
+        "desconto_pct": 57,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-11T18:32:18-03:00",
-        "conferido_em": "2026-11-11T18:32:18-03:00"
+        "price_checked_at": "2026-11-12T18:31:00-03:00",
+        "conferido_em": "2026-11-12T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T15:20:00-03:00",
@@ -255,6 +323,11 @@
           "em": "2026-11-11T18:32:18-03:00",
           "cartao": 181.0,
           "pix": 171.95
+        },
+        {
+          "em": "2026-11-12T18:31:00-03:00",
+          "cartao": 179.99,
+          "pix": 170.99
         }
       ],
       "conferido_por": "ML Scout"
@@ -282,8 +355,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-11T18:32:18-03:00",
-        "conferido_em": "2026-11-11T18:32:18-03:00"
+        "price_checked_at": "2026-11-12T18:31:00-03:00",
+        "conferido_em": "2026-11-12T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T18:19:00-03:00",
@@ -307,6 +380,10 @@
         },
         {
           "em": "2026-11-11T18:32:18-03:00",
+          "cartao": 74.9
+        },
+        {
+          "em": "2026-11-12T18:31:00-03:00",
           "cartao": 74.9
         }
       ],
