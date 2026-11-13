@@ -229,3 +229,27 @@ segundo roda em ~2 min. O site antigo continua no ar durante a espera.
   em 200; ficha nova mostra R$ 59,37 e a referência 12/11 às 19:00; kit mostra 639,90 / 588,71;
   sitemap com 14 URLs incluindo a nova; `/ir/lixeira-automatica-16l-tempo-real/` em 302 para o
   `meli.la`; 404 real.
+
+### Rodada diária de 13/11/2026 (oferta nova + preços do dia)
+
+- Oferta nova: **MLB5735296442** (kit 2 câmeras Wi-Fi iCSee HW A8), capa do vídeo de 13/11 v2
+  (md5 `186054b9…`, confere com o pacote do Publisher e com o MD5 do `notes`), postada 08:37 BRT nos
+  4 canais. Veredito escrito só com o que o vídeo afirma; a ficha repete o aviso de 2,4 GHz e do
+  microSD não incluso.
+- Preço relido por mim às **19:01 BRT** em `meli.la/1f19TeV` (200 sem sessão, tag
+  `caicara_north_shore`): **R$ 185,99 em outros meios** e **R$ 176,69 no Pix** (o cartão mostra
+  "49% OFF no Pix" e "R$ 185,99 em outros meios"), de R$ 349,00 — 46% OFF no valor de cartão. Entrou
+  com `cartao: 185.99`, `pix: 176.69` e `desconto_pct: 46`, e `capa_preco: 185.99` porque o cartaz
+  estampa esse valor. Não declarei `avaliacao`: o brief lido com sessão dizia 4,8 / 67.682, mas o card
+  sem sessão de hoje mostrava 4,9 — divergência que não dá para fixar com honestidade.
+- Preços do dia (ML Scout, 18:31 BRT): auxiliar 143,99 → **151,99** no Pix (61% OFF); kit 3 em 1
+  639,90 → **589,90** com 10x R$ 58,99 sem juros e sem preço de Pix no anúncio; lixeira, panelas e
+  carrinho sem mudança (só nova leitura). Colchão (12/11), tênis (11/11), maquininha e refletor
+  (09/11) seguem com a leitura anterior.
+- Deployment `ce504890-e52a-49d2-a248-e60393ca416c` (gatilho `64f0dbc`, conteúdo `faa4875`). A fila
+  travou em `queued` de novo: o enfileirado `561f1afb` foi apagado e o build retomou com o commit vazio.
+  Produção anterior: `1419847a-1fcf-429c-82d1-50d76e49c9cf`.
+- Verificado no domínio: `/`, `/ofertas/`, a ficha nova e as 9 antigas, `/canais/`, `/como-conferimos/`
+  em 200 e byte-idênticos ao build local; ficha nova mostra R$ 185,99, R$ 176,69 no Pix e leitura
+  13/11 às 19:01; kit mostra 589,90 / 10x 58,99; sitemap com 15 URLs incluindo a nova;
+  `/ir/kit-2-cameras-seguranca-ip-wifi-icsee/` em 302 para o `meli.la`; 404 real.
