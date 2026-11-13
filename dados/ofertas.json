@@ -26,8 +26,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-12T19:00:00-03:00",
-        "conferido_em": "2026-11-12T19:00:00-03:00"
+        "price_checked_at": "2026-11-13T18:31:00-03:00",
+        "conferido_em": "2026-11-13T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-12T12:49:00-03:00",
@@ -52,9 +52,13 @@
         {
           "em": "2026-11-12T19:00:00-03:00",
           "cartao": 59.37
+        },
+        {
+          "em": "2026-11-13T18:31:00-03:00",
+          "cartao": 59.37
         }
       ],
-      "conferido_por": "Dev Fullstack",
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true,
       "capa_preco": 59.37
     },
@@ -75,14 +79,14 @@
       "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
       "preco": {
         "cartao": null,
-        "pix": 143.99,
+        "pix": 151.99,
         "parcelas": null,
         "de": 390.0,
-        "desconto_pct": 63,
+        "desconto_pct": 61,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-12T18:31:00-03:00",
-        "conferido_em": "2026-11-12T18:31:00-03:00"
+        "price_checked_at": "2026-11-13T18:31:00-03:00",
+        "conferido_em": "2026-11-13T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-11T08:50:00-03:00",
@@ -117,6 +121,11 @@
         {
           "em": "2026-11-12T18:31:00-03:00",
           "pix": 143.99
+        },
+        {
+          "em": "2026-11-13T18:31:00-03:00",
+          "cartao": null,
+          "pix": 151.99
         }
       ],
       "conferido_por": "ML Scout"
@@ -144,8 +153,8 @@
         "desconto_pct": 34,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-12T18:31:00-03:00",
-        "conferido_em": "2026-11-12T18:31:00-03:00"
+        "price_checked_at": "2026-11-13T18:31:00-03:00",
+        "conferido_em": "2026-11-13T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -186,6 +195,11 @@
         {
           "em": "2026-11-12T18:31:00-03:00",
           "pix": 174.71
+        },
+        {
+          "em": "2026-11-13T18:31:00-03:00",
+          "cartao": null,
+          "pix": 174.71
         }
       ],
       "conferido_por": "ML Scout",
@@ -208,19 +222,19 @@
       "capa": "assets/capas/kit-3-em-1-the-black-tools.jpg",
       "capa_alt": "Capa do vídeo do kit 3 em 1 The Black Tools, com a maleta aberta e o preço de R$ 593,94",
       "preco": {
-        "cartao": 639.9,
-        "pix": 588.71,
+        "cartao": 589.9,
+        "pix": null,
         "parcelas": {
           "quantidade": 10,
-          "valor": 63.99,
+          "valor": 58.99,
           "sem_juros": true
         },
         "de": 1079.9,
         "desconto_pct": 45,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-12T18:31:00-03:00",
-        "conferido_em": "2026-11-12T18:31:00-03:00"
+        "price_checked_at": "2026-11-13T18:31:00-03:00",
+        "conferido_em": "2026-11-13T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -268,6 +282,10 @@
           "em": "2026-11-12T18:31:00-03:00",
           "cartao": 639.9,
           "pix": 588.71
+        },
+        {
+          "em": "2026-11-13T18:31:00-03:00",
+          "cartao": 589.9
         }
       ],
       "conferido_por": "ML Scout",
@@ -355,8 +373,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-12T18:31:00-03:00",
-        "conferido_em": "2026-11-12T18:31:00-03:00"
+        "price_checked_at": "2026-11-13T18:31:00-03:00",
+        "conferido_em": "2026-11-13T18:31:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-06T18:19:00-03:00",
@@ -384,6 +402,10 @@
         },
         {
           "em": "2026-11-12T18:31:00-03:00",
+          "cartao": 74.9
+        },
+        {
+          "em": "2026-11-13T18:31:00-03:00",
           "cartao": 74.9
         }
       ],
@@ -537,6 +559,63 @@
         }
       ],
       "conferido_por": "ML Scout"
+    },
+    {
+      "slug": "kit-2-cameras-seguranca-ip-wifi-icsee",
+      "publish": true,
+      "item_id": "MLB5735296442",
+      "catalog_id": "MLB46836439",
+      "titulo": "Kit 2 Câmeras Segurança IP Wi-Fi iCSee HW A8",
+      "titulo_curto": "Kit 2 Câmeras Wi-Fi HW A8",
+      "categoria": {
+        "slug": "casa",
+        "rotulo": "Casa"
+      },
+      "marca": "iCSee",
+      "veredito": "Kit com 2 câmeras Wi-Fi iCSee HW A8: o vídeo afirma full HD 1080p, giro de 355° na horizontal e 90° na vertical, visão noturna por infravermelho e IP66 para área externa — ele não mostra o app nem imagens ao vivo.",
+      "capa": "assets/capas/kit-2-cameras-seguranca-ip-wifi-icsee.jpg",
+      "capa_alt": "Capa do vídeo do kit 2 câmeras Wi-Fi iCSee HW A8, com o preço de R$ 185,99",
+      "preco": {
+        "cartao": 185.99,
+        "pix": 176.69,
+        "parcelas": null,
+        "de": 349.0,
+        "desconto_pct": 46,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-13T19:01:00-03:00",
+        "conferido_em": "2026-11-13T19:01:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-13T08:37:00-03:00",
+      "atualizado_em": "2026-11-13T19:01:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/FVs-p3QZDUQ",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfriW7FIiYG/",
+        "facebook": "https://www.facebook.com/reel/1678498370576320",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7707619337787428097"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/1f19TeV",
+      "ficha": [
+        "Kit com 2 câmeras dome brancas de 1080p (2 MP), fixadas em parede",
+        "Giram 355° na horizontal e 90° na vertical, com controle pelo app iCSee",
+        "Visão noturna por infravermelho; o dado técnico da ficha diz que não é colorida",
+        "IP66 para área externa; áudio bidirecional pelo app",
+        "Wi-Fi 2,4 GHz — o anúncio avisa que não funciona em 5 GHz",
+        "Cartão microSD de até 64 GB não acompanha; bivolt 110–220 V; 290 g por câmera"
+      ],
+      "vendedor": "PS Imports",
+      "historico_preco": [
+        {
+          "em": "2026-11-13T19:01:00-03:00",
+          "cartao": 185.99,
+          "pix": 176.69
+        }
+      ],
+      "conferido_por": "Dev Fullstack",
+      "capa_tem_preco": true,
+      "capa_preco": 185.99
     }
   ]
 }
