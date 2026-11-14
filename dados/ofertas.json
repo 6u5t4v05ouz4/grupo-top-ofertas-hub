@@ -1,8 +1,65 @@
 {
   "schema_version": 1,
-  "referencia": "2026-11-12T19:00:00-03:00",
-  "atualizado_em": "2026-11-12T19:00:00-03:00",
+  "referencia": "2026-11-14T19:02:00-03:00",
+  "atualizado_em": "2026-11-14T19:02:00-03:00",
   "ofertas": [
+    {
+      "slug": "lavadora-alta-pressao-karcher-compacta-1500-psi",
+      "publish": true,
+      "item_id": "MLB3392895409",
+      "catalog_id": "MLB40583845",
+      "titulo": "Lavadora de Alta Pressão Kärcher Compacta 1.500 PSI 1400W 300 L/h",
+      "titulo_curto": "Lavadora Kärcher Compacta 1500 PSI",
+      "categoria": {
+        "slug": "ferramentas",
+        "rotulo": "Ferramentas"
+      },
+      "marca": "Kärcher",
+      "veredito": "Lavadora Kärcher Compacta de 1.500 PSI e 1.400 W: o vídeo afirma 300 L/h, lança regulável e aplicador de detergente, nas versões 127 V e 220 V, e diz que serve para calçada, carro e quintal — ele não mostra a máquina em uso, só a foto de demonstração do anúncio.",
+      "capa": "assets/capas/lavadora-alta-pressao-karcher-compacta-1500-psi.jpg",
+      "capa_alt": "Capa do vídeo da lavadora Kärcher Compacta 1500 PSI, com o preço de R$ 299,00",
+      "preco": {
+        "cartao": 299.0,
+        "pix": null,
+        "parcelas": null,
+        "de": 499.9,
+        "desconto_pct": 40,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-14T19:02:00-03:00",
+        "conferido_em": "2026-11-14T19:02:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-14T09:04:00-03:00",
+      "atualizado_em": "2026-11-14T19:02:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/ci0gvUJYFvE",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfuKoYNolb1/",
+        "facebook": "https://www.facebook.com/reel/1496343629081988",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7707998310484675861"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/17hTFow",
+      "ficha": [
+        "1.500 PSI de pressão, motor de 1.400 W e vazão de 300 L/h",
+        "Lança regulável e aplicador de detergente inclusos",
+        "Bomba com conector de alumínio e cabeçote N-Cor; porta-acessórios integrado",
+        "Compacta, para uso doméstico em calçada, carro e quintal",
+        "Duas voltagens: 127 V e 220 V",
+        "Frete grátis no anúncio"
+      ],
+      "vendedor": "Loja oficial Kärcher",
+      "historico_preco": [
+        {
+          "em": "2026-11-14T19:02:00-03:00",
+          "cartao": 299.0,
+          "status": "inicial"
+        }
+      ],
+      "conferido_por": "Dev Fullstack",
+      "capa_tem_preco": true,
+      "capa_preco": 299.0
+    },
     {
       "slug": "lixeira-automatica-16l-tempo-real",
       "publish": true,
@@ -26,8 +83,8 @@
         "desconto_pct": 62,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-13T18:31:00-03:00",
-        "conferido_em": "2026-11-13T18:31:00-03:00"
+        "price_checked_at": "2026-11-14T18:32:00-03:00",
+        "conferido_em": "2026-11-14T18:32:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-12T12:49:00-03:00",
@@ -56,6 +113,10 @@
         {
           "em": "2026-11-13T18:31:00-03:00",
           "cartao": 59.37
+        },
+        {
+          "em": "2026-11-14T18:32:00-03:00",
+          "cartao": 59.37
         }
       ],
       "conferido_por": "ML Scout",
@@ -79,14 +140,14 @@
       "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
       "preco": {
         "cartao": null,
-        "pix": 151.99,
+        "pix": 143.99,
         "parcelas": null,
         "de": 390.0,
-        "desconto_pct": 61,
+        "desconto_pct": 63,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-13T18:31:00-03:00",
-        "conferido_em": "2026-11-13T18:31:00-03:00"
+        "price_checked_at": "2026-11-14T19:07:00-03:00",
+        "conferido_em": "2026-11-14T19:07:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-11T08:50:00-03:00",
@@ -126,9 +187,17 @@
           "em": "2026-11-13T18:31:00-03:00",
           "cartao": null,
           "pix": 151.99
+        },
+        {
+          "em": "2026-11-14T18:32:00-03:00",
+          "cartao": 159.99
+        },
+        {
+          "em": "2026-11-14T19:07:00-03:00",
+          "pix": 143.99
         }
       ],
-      "conferido_por": "ML Scout"
+      "conferido_por": "Dev Fullstack"
     },
     {
       "slug": "jogo-panelas-antiaderente-7-camadas-10-pecas",
@@ -153,8 +222,8 @@
         "desconto_pct": 34,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-13T18:31:00-03:00",
-        "conferido_em": "2026-11-13T18:31:00-03:00"
+        "price_checked_at": "2026-11-14T18:32:00-03:00",
+        "conferido_em": "2026-11-14T18:32:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -200,6 +269,10 @@
           "em": "2026-11-13T18:31:00-03:00",
           "cartao": null,
           "pix": 174.71
+        },
+        {
+          "em": "2026-11-14T18:32:00-03:00",
+          "pix": 174.71
         }
       ],
       "conferido_por": "ML Scout",
@@ -224,17 +297,13 @@
       "preco": {
         "cartao": 589.9,
         "pix": null,
-        "parcelas": {
-          "quantidade": 10,
-          "valor": 58.99,
-          "sem_juros": true
-        },
+        "parcelas": null,
         "de": 1079.9,
         "desconto_pct": 45,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-13T18:31:00-03:00",
-        "conferido_em": "2026-11-13T18:31:00-03:00"
+        "price_checked_at": "2026-11-14T19:05:00-03:00",
+        "conferido_em": "2026-11-14T19:05:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-08T13:12:00-03:00",
@@ -286,9 +355,13 @@
         {
           "em": "2026-11-13T18:31:00-03:00",
           "cartao": 589.9
+        },
+        {
+          "em": "2026-11-14T19:05:00-03:00",
+          "cartao": 589.9
         }
       ],
-      "conferido_por": "ML Scout",
+      "conferido_por": "Dev Fullstack",
       "capa_tem_preco": true,
       "capa_preco": 593.94
     },
@@ -577,14 +650,14 @@
       "capa_alt": "Capa do vídeo do kit 2 câmeras Wi-Fi iCSee HW A8, com o preço de R$ 185,99",
       "preco": {
         "cartao": 185.99,
-        "pix": 176.69,
+        "pix": null,
         "parcelas": null,
         "de": 349.0,
         "desconto_pct": 46,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-13T19:01:00-03:00",
-        "conferido_em": "2026-11-13T19:01:00-03:00"
+        "price_checked_at": "2026-11-14T18:32:00-03:00",
+        "conferido_em": "2026-11-14T18:32:00-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-13T08:37:00-03:00",
@@ -611,9 +684,13 @@
           "em": "2026-11-13T19:01:00-03:00",
           "cartao": 185.99,
           "pix": 176.69
+        },
+        {
+          "em": "2026-11-14T18:32:00-03:00",
+          "cartao": 185.99
         }
       ],
-      "conferido_por": "Dev Fullstack",
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true,
       "capa_preco": 185.99
     }
