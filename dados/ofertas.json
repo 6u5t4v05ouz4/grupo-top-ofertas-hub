@@ -19,15 +19,15 @@
       "capa": "assets/capas/lavadora-alta-pressao-karcher-compacta-1500-psi.jpg",
       "capa_alt": "Capa do vídeo da lavadora Kärcher Compacta 1500 PSI, com o preço de R$ 299,00",
       "preco": {
-        "cartao": 299.0,
+        "cartao": 339.0,
         "pix": null,
         "parcelas": null,
-        "de": 499.9,
-        "desconto_pct": 40,
+        "de": 480.71,
+        "desconto_pct": 29,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-14T19:02:00-03:00",
-        "conferido_em": "2026-11-14T19:02:00-03:00"
+        "price_checked_at": "2026-11-15T18:31:57-03:00",
+        "conferido_em": "2026-11-15T18:31:57-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-14T09:04:00-03:00",
@@ -54,9 +54,14 @@
           "em": "2026-11-14T19:02:00-03:00",
           "cartao": 299.0,
           "status": "inicial"
+        },
+        {
+          "em": "2026-11-15T18:31:57-03:00",
+          "cartao": 339.0,
+          "status": "conferencia_diaria"
         }
       ],
-      "conferido_por": "Dev Fullstack",
+      "conferido_por": "ML Scout",
       "capa_tem_preco": true,
       "capa_preco": 299.0
     },
@@ -76,15 +81,15 @@
       "capa": "assets/capas/lixeira-automatica-16l-tempo-real.jpg",
       "capa_alt": "Capa do vídeo da lixeira automática de 16 litros Tempo Real, com o preço de R$ 59,37",
       "preco": {
-        "cartao": 59.37,
+        "cartao": 59.05,
         "pix": null,
         "parcelas": null,
         "de": 159.99,
-        "desconto_pct": 62,
+        "desconto_pct": 63,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-14T18:32:00-03:00",
-        "conferido_em": "2026-11-14T18:32:00-03:00"
+        "price_checked_at": "2026-11-15T18:32:04-03:00",
+        "conferido_em": "2026-11-15T18:32:04-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-12T12:49:00-03:00",
@@ -117,6 +122,11 @@
         {
           "em": "2026-11-14T18:32:00-03:00",
           "cartao": 59.37
+        },
+        {
+          "em": "2026-11-15T18:32:04-03:00",
+          "cartao": 59.05,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout",
@@ -139,15 +149,15 @@
       "capa": "assets/capas/auxiliar-partida-compressor-4-em-1.jpg",
       "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
       "preco": {
-        "cartao": null,
+        "cartao": 159.99,
         "pix": 143.99,
         "parcelas": null,
         "de": 390.0,
-        "desconto_pct": 63,
+        "desconto_pct": 58,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-14T19:07:00-03:00",
-        "conferido_em": "2026-11-14T19:07:00-03:00"
+        "price_checked_at": "2026-11-15T18:32:04-03:00",
+        "conferido_em": "2026-11-15T18:32:04-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-11T08:50:00-03:00",
@@ -195,9 +205,14 @@
         {
           "em": "2026-11-14T19:07:00-03:00",
           "pix": 143.99
+        },
+        {
+          "em": "2026-11-15T18:32:04-03:00",
+          "cartao": 159.99,
+          "status": "conferencia_diaria"
         }
       ],
-      "conferido_por": "Dev Fullstack"
+      "conferido_por": "ML Scout"
     },
     {
       "slug": "jogo-panelas-antiaderente-7-camadas-10-pecas",
@@ -215,15 +230,15 @@
       "capa": "assets/capas/jogo-panelas-7-camadas.jpg",
       "capa_alt": "Capa do vídeo do jogo de panelas antiaderente de 10 peças, com o preço de R$ 170,90 no Pix",
       "preco": {
-        "cartao": null,
+        "cartao": 189.9,
         "pix": 174.71,
         "parcelas": null,
         "de": 264.9,
-        "desconto_pct": 34,
+        "desconto_pct": 28,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-14T18:32:00-03:00",
-        "conferido_em": "2026-11-14T18:32:00-03:00"
+        "price_checked_at": "2026-11-15T18:31:57-03:00",
+        "conferido_em": "2026-11-15T18:31:57-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -273,6 +288,11 @@
         {
           "em": "2026-11-14T18:32:00-03:00",
           "pix": 174.71
+        },
+        {
+          "em": "2026-11-15T18:31:57-03:00",
+          "cartao": 189.9,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout",
@@ -656,8 +676,8 @@
         "desconto_pct": 46,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-14T18:32:00-03:00",
-        "conferido_em": "2026-11-14T18:32:00-03:00"
+        "price_checked_at": "2026-11-15T18:32:04-03:00",
+        "conferido_em": "2026-11-15T18:32:04-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-13T08:37:00-03:00",
@@ -688,6 +708,11 @@
         {
           "em": "2026-11-14T18:32:00-03:00",
           "cartao": 185.99
+        },
+        {
+          "em": "2026-11-15T18:32:04-03:00",
+          "cartao": 185.99,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout",
