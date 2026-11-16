@@ -1,8 +1,67 @@
 {
   "schema_version": 1,
-  "referencia": "2026-11-14T19:02:00-03:00",
-  "atualizado_em": "2026-11-14T19:02:00-03:00",
+  "referencia": "2026-11-16T19:01:00-03:00",
+  "atualizado_em": "2026-11-16T19:01:00-03:00",
   "ofertas": [
+    {
+      "slug": "parafusadeira-furadeira-impacto-the-black-tools-tb-21px",
+      "publish": true,
+      "item_id": "MLB30144703",
+      "oferta_id": "MLB4268042659",
+      "titulo": "Parafusadeira e Furadeira de Impacto The Black Tools TB-21PX 21V com 2 baterias e maleta",
+      "titulo_curto": "Parafusadeira de Impacto TB-21PX 21V",
+      "categoria": {
+        "slug": "ferramentas",
+        "rotulo": "Ferramentas"
+      },
+      "marca": "The Black Tools",
+      "veredito": "Parafusadeira de impacto 21 V da The Black Tools: o vídeo afirma 35 Nm, duas velocidades (0–400 e 0–1.400 rpm), luz de LED e duas baterias de 2 Ah na maleta com brocas, bits e soquetes — a ficha do anúncio confirma isso, mas diz que o motor é com escovas, não brushless, e que a ferramenta não tem indicador de carga.",
+      "capa": "assets/capas/parafusadeira-furadeira-impacto-the-black-tools-tb-21px.jpg",
+      "capa_alt": "Capa do vídeo da parafusadeira The Black Tools TB-21PX 21V, com o preço de R$ 139,90",
+      "preco": {
+        "cartao": 139.9,
+        "pix": null,
+        "parcelas": null,
+        "de": 259.9,
+        "desconto_pct": 46,
+        "moeda": "BRL",
+        "fonte": "anuncio",
+        "price_checked_at": "2026-11-16T19:01:00-03:00",
+        "conferido_em": "2026-11-16T19:01:00-03:00"
+      },
+      "disponibilidade": "InStock",
+      "postado_em": "2026-11-16T08:58:00-03:00",
+      "atualizado_em": "2026-11-16T19:01:00-03:00",
+      "videos": {
+        "youtube": "https://youtube.com/shorts/iujdE83HaA0",
+        "instagram": "https://www.instagram.com/grupotopofertas.br/reel/DfzTnZMILQE/",
+        "facebook": "https://www.facebook.com/reel/1874449063584203/",
+        "tiktok": "https://www.tiktok.com/@grupotopofertas/video/7708739419607551253"
+      },
+      "duracao_video_s": 20,
+      "link_afiliado": "https://meli.la/2YhohKt",
+      "ficha": [
+        "21 V, 35 Nm de torque e mandril de 3/8\" (10 mm) com impacto",
+        "Duas velocidades: 0–400 e 0–1.400 rpm",
+        "Duas baterias de 2 Ah e carregador bivolt dentro da maleta",
+        "Maleta com brocas, bits, soquetes e conector flexível",
+        "Luz de LED no corpo; motor com escovas e sem indicador de carga (ficha do anúncio)"
+      ],
+      "vendedor": "Loja oficial The Black Tools",
+      "avaliacao": {
+        "nota": 4.8,
+        "opinioes": 67896
+      },
+      "historico_preco": [
+        {
+          "em": "2026-11-16T19:01:00-03:00",
+          "cartao": 139.9
+        }
+      ],
+      "conferido_por": "ML Scout",
+      "capa_tem_preco": true,
+      "capa_preco": 139.9
+    },
     {
       "slug": "lavadora-alta-pressao-karcher-compacta-1500-psi",
       "publish": true,
@@ -19,15 +78,19 @@
       "capa": "assets/capas/lavadora-alta-pressao-karcher-compacta-1500-psi.jpg",
       "capa_alt": "Capa do vídeo da lavadora Kärcher Compacta 1500 PSI, com o preço de R$ 299,00",
       "preco": {
-        "cartao": 339.0,
-        "pix": null,
-        "parcelas": null,
-        "de": 480.71,
-        "desconto_pct": 29,
+        "cartao": 359.0,
+        "pix": 323.1,
+        "parcelas": {
+          "quantidade": 7,
+          "valor": 51.29,
+          "sem_juros": true
+        },
+        "de": 513.7,
+        "desconto_pct": 37,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-15T18:31:57-03:00",
-        "conferido_em": "2026-11-15T18:31:57-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-14T09:04:00-03:00",
@@ -59,6 +122,11 @@
           "em": "2026-11-15T18:31:57-03:00",
           "cartao": 339.0,
           "status": "conferencia_diaria"
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
+          "cartao": 359.0,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout",
@@ -88,8 +156,8 @@
         "desconto_pct": 63,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-15T18:32:04-03:00",
-        "conferido_em": "2026-11-15T18:32:04-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-12T12:49:00-03:00",
@@ -127,6 +195,11 @@
           "em": "2026-11-15T18:32:04-03:00",
           "cartao": 59.05,
           "status": "conferencia_diaria"
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
+          "cartao": 59.05,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout",
@@ -149,15 +222,15 @@
       "capa": "assets/capas/auxiliar-partida-compressor-4-em-1.jpg",
       "capa_alt": "Capa do vídeo do auxiliar de partida 4 em 1 da MidiaFone, com o preço de R$ 143,99 no Pix",
       "preco": {
-        "cartao": 159.99,
+        "cartao": null,
         "pix": 143.99,
         "parcelas": null,
         "de": 390.0,
-        "desconto_pct": 58,
+        "desconto_pct": 63,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-15T18:32:04-03:00",
-        "conferido_em": "2026-11-15T18:32:04-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-11T08:50:00-03:00",
@@ -210,6 +283,11 @@
           "em": "2026-11-15T18:32:04-03:00",
           "cartao": 159.99,
           "status": "conferencia_diaria"
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
+          "pix": 143.99,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout"
@@ -230,15 +308,15 @@
       "capa": "assets/capas/jogo-panelas-7-camadas.jpg",
       "capa_alt": "Capa do vídeo do jogo de panelas antiaderente de 10 peças, com o preço de R$ 170,90 no Pix",
       "preco": {
-        "cartao": 189.9,
-        "pix": 174.71,
+        "cartao": null,
+        "pix": 170.91,
         "parcelas": null,
         "de": 264.9,
-        "desconto_pct": 28,
+        "desconto_pct": 35,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-15T18:31:57-03:00",
-        "conferido_em": "2026-11-15T18:31:57-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-09T08:39:00-03:00",
@@ -292,6 +370,11 @@
         {
           "em": "2026-11-15T18:31:57-03:00",
           "cartao": 189.9,
+          "status": "conferencia_diaria"
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
+          "pix": 170.91,
           "status": "conferencia_diaria"
         }
       ],
@@ -583,8 +666,8 @@
         "desconto_pct": 40,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-09T18:36:22-03:00",
-        "conferido_em": "2026-11-09T18:36:22-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-04T11:46:00-03:00",
@@ -605,6 +688,11 @@
         {
           "em": "2026-11-09T18:36:22-03:00",
           "pix": 20.61
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
+          "pix": 20.61,
+          "status": "conferencia_diaria"
         }
       ],
       "conferido_por": "ML Scout"
@@ -676,8 +764,8 @@
         "desconto_pct": 46,
         "moeda": "BRL",
         "fonte": "anuncio",
-        "price_checked_at": "2026-11-15T18:32:04-03:00",
-        "conferido_em": "2026-11-15T18:32:04-03:00"
+        "price_checked_at": "2026-11-16T18:34:41-03:00",
+        "conferido_em": "2026-11-16T18:34:41-03:00"
       },
       "disponibilidade": "InStock",
       "postado_em": "2026-11-13T08:37:00-03:00",
@@ -711,6 +799,11 @@
         },
         {
           "em": "2026-11-15T18:32:04-03:00",
+          "cartao": 185.99,
+          "status": "conferencia_diaria"
+        },
+        {
+          "em": "2026-11-16T18:34:41-03:00",
           "cartao": 185.99,
           "status": "conferencia_diaria"
         }
